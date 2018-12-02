@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <RootNamespace>Ullechamp_Api.Infrastructure.Data</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Repositories" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Ullechamp-Api.Core.Entity\Ullechamp-Api.Core.Entity.csproj" />
+      <ProjectReference Include="..\Ullechamp-Api.Core\Ullechamp-Api.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="2.1.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+    </ItemGroup>
+
+</Project>

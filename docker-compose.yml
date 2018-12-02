@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  ullechamp-api.restapi:
+    image: ${DOCKER_REGISTRY-}ullechampapi
+    build:
+      context: .
+      dockerfile: Ullechamp-Api.RestApi/Dockerfile
