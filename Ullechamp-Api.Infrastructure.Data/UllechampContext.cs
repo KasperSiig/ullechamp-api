@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Ullechamp_Api.Core.Entity;
 
 namespace Ullechamp_Api.Infrastructure.Data
 {
@@ -11,5 +12,7 @@ namespace Ullechamp_Api.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
         }
+        
+        public DbSet<CalenderItem> Calenders { get; set; }
     }
 }

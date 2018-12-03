@@ -12,7 +12,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Ullechamp_Api.Core.ApplicationService;
+using Ullechamp_Api.Core.ApplicationService.Impl;
+using Ullechamp_Api.Core.DomainService;
 using Ullechamp_Api.Infrastructure.Data;
+using Ullechamp_Api.Infrastructure.Data.Repositories;
 
 namespace Ullechamp_Api.RestApi
 {
@@ -45,6 +49,9 @@ namespace Ullechamp_Api.RestApi
             {
                 // TODO: ADD REAL DATABASE
             }
+            
+            services.AddScoped<ICalenderRepository, CalenderRepository>();
+            services.AddScoped<ICalenderService, CalenderService>();
             
             services.AddMvc().AddJsonOptions(options =>
             {

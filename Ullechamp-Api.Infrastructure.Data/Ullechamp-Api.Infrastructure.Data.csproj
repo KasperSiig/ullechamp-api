@@ -6,10 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Repositories" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Ullechamp-Api.Core.Entity\Ullechamp-Api.Core.Entity.csproj" />
       <ProjectReference Include="..\Ullechamp-Api.Core\Ullechamp-Api.Core.csproj" />
     </ItemGroup>
