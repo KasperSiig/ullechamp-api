@@ -22,11 +22,14 @@
           <e p="ICalenderService.cs" t="Include" />
           <e p="Impl" t="Include">
             <e p="CalenderService.cs" t="Include" />
+            <e p="UserService.cs" t="Include" />
           </e>
+          <e p="IUserService.cs" t="Include" />
         </e>
         <e p="Bin" t="ExcludeRecursive" />
         <e p="DomainService" t="Include">
           <e p="ICalenderRepository.cs" t="Include" />
+          <e p="IUserRepository.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -48,6 +51,7 @@
           </e>
         </e>
         <e p="Ullechamp-Api.Core.Entity.csproj" t="IncludeRecursive" />
+        <e p="User.cs" t="Include" />
       </e>
       <e p="Ullechamp-Api.Infrastructure.Data" t="IncludeRecursive">
         <e p="Bin" t="ExcludeRecursive" />
@@ -61,6 +65,7 @@
         </e>
         <e p="Repositories" t="Include">
           <e p="CalenderRepository.cs" t="Include" />
+          <e p="UserRepository.cs" t="Include" />
         </e>
         <e p="Ullechamp-Api.Infrastructure.Data.csproj" t="IncludeRecursive" />
         <e p="UllechampContext.cs" t="Include" />
@@ -103,6 +108,7 @@
         </e>
         <e p="ServiceTests" t="Include">
           <e p="CalenderServiceTest.cs" t="Include" />
+          <e p="UserServiceTest.cs" t="Include" />
         </e>
         <e p="UllechampTest.csproj" t="IncludeRecursive" />
       </e>
