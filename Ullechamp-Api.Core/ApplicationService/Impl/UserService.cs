@@ -16,6 +16,7 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         
         public User CreateUser(User user)
         {
+            
             return _userRepo.CreateUser(user);
         }
 
@@ -23,6 +24,21 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         {
             var users = _userRepo.ReadAllUsers();
             return users.ToList();
+        }
+
+        public User GetById(int id)
+        {
+            return _userRepo.ReadById(id);
+        }
+
+        public User Delete(int id)
+        {
+            return _userRepo.Delete(id);
+        }
+
+        public User Update(User user)
+        {
+            return _userRepo.Update(user);
         }
     }
 }
