@@ -15,5 +15,6 @@ namespace Ullechamp_Api.Core.Entity
         public double KDA { get; set; }
         public int WinLoss { get; set; }
         public int Point { get; set; }
+        public int Rank { get; set; }
     }
 }
