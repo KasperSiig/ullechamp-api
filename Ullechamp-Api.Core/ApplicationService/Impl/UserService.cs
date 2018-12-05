@@ -55,7 +55,7 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
                 throw new InvalidDataException("Index out of bounds, CurrentPage is to high");
             }
 
-            return _userRepo.ReadAll(filter);
+            return _userRepo.ReadAllFiltered(filter).ToList();
         }
     }
 }

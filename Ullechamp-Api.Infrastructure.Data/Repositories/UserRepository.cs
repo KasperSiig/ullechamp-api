@@ -23,6 +23,7 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
 
         public IEnumerable<User> ReadAllUsers()
         {
+            
             return _ctx.Users;
         }
 
@@ -43,6 +44,23 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
             var userUpdate = _ctx.Update(user).Entity;
             _ctx.SaveChanges();
             return userUpdate;
+        }
+
+        public IEnumerable<User> ReadAllFiltered(Filter filter)
+        {
+            if (filter == null || filter.CurrentPage == 0 && filter.ItemsPrPage == 0)
+            {
+                return _ctx.Users.OrderByDescending(x => x.Point);
+            }
+
+            return _ctx.Users.OrderByDescending(x => x.Point)
+                .Skip((filter.CurrentPage - 1) * filter.ItemsPrPage)
+                .Take(filter.ItemsPrPage);
+        }
+
+        public int Count()
+        {
+            return _ctx.Users.Count();
         }
     }
 }
