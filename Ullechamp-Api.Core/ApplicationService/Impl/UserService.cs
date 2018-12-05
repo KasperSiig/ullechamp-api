@@ -40,7 +40,10 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
 
         public User Update(User user)
         {
-            return _userRepo.Update(user);
+            var updateUser = _userRepo.Update(user);
+            
+            
+            return updateUser;
         }
 
         public List<User> GetFilteredList(Filter filter)

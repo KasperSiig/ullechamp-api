@@ -66,5 +66,12 @@ namespace Ullechamp_Api.Core.DomainService
         /// <returns>Total of users</returns>
         int Count();
         #endregion
+
+        #region UpdateRank
+        /// <summary>
+        /// Updates users rank
+        /// </summary>
+        void UpdateRank();
+        #endregion
     }
 }
