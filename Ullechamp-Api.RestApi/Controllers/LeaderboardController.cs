@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Ullechamp_Api.Core.ApplicationService;
 using Ullechamp_Api.Core.Entity;
-using Ullechamp_Api.RestApi.Dtos;
 
 namespace Ullechamp_Api.RestApi.Controllers
 {
@@ -17,27 +17,18 @@ namespace Ullechamp_Api.RestApi.Controllers
             _userService = userService;
         }
         
-        // GET api/values
+        // GET api/leaderboard
         [HttpGet]
-        public ActionResult<IEnumerable<UserDTO>> Get([FromQuery]Filter filter)
+        public ActionResult<IEnumerable<User>> Get([FromQuery]Filter filter)
         {
-            var rankCount = filter.CurrentPage == 1 
-                ? 1 
-                : (filter.CurrentPage - 1) * (filter.ItemsPrPage + 1);
-            var sortedLists = _userService.GetFilteredList(filter);
-            var rankList = new List<UserDTO>();
-            foreach (var sortedList in sortedLists)
-            {
-                var userDto = new UserDTO()
-                {
-                    User = sortedList,
-                    Rank = rankCount++
-                };
-                rankList.Add(userDto);
-            }
-            
-            
-            return rankList;
+            return _userService.GetFilteredList(filter);
+        }
+        
+        [HttpGet("search")]
+        public ActionResult<IEnumerable<User>> Get([FromQuery]Filter filter, string search)
+        {
+            Console.WriteLine("Search is fucking: " + search);
+            return _userService.SearchList(filter, search);
         }
 
         // GET api/values/5

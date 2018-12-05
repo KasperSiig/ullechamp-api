@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using Ullechamp_Api.Core.DomainService;
 using Ullechamp_Api.Core.Entity;
@@ -40,7 +41,10 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
 
         public User Update(User user)
         {
-            return _userRepo.Update(user);
+            var updateUser = _userRepo.Update(user);
+            
+            
+            return updateUser;
         }
 
         public List<User> GetFilteredList(Filter filter)
@@ -56,6 +60,11 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
             }
 
             return _userRepo.ReadAllFiltered(filter).ToList();
+        }
+
+        public List<User> SearchList(Filter filter, string searchQuery)
+        {
+            return _userRepo.ReadSearchFiltered(filter, searchQuery).ToList();
         }
     }
 }

@@ -32,6 +32,8 @@ namespace Ullechamp_Api.Core.DomainService
         User ReadById(int id);
         #endregion
 
+        IEnumerable<User> ReadSearchFiltered(Filter filter, string search);
+
         #region Delete
         /// <summary>
         /// Deletes user by id
@@ -65,6 +67,13 @@ namespace Ullechamp_Api.Core.DomainService
         /// </summary>
         /// <returns>Total of users</returns>
         int Count();
+        #endregion
+
+        #region UpdateRank
+        /// <summary>
+        /// Updates users rank
+        /// </summary>
+        void UpdateRank();
         #endregion
     }
 }

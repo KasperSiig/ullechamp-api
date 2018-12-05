@@ -57,5 +57,7 @@ namespace Ullechamp_Api.Core.ApplicationService
         /// <returns>The filtered list of users</returns>
         List<User> GetFilteredList(Filter filter);
         #endregion
+
+        List<User> SearchList(Filter filter, string searchQuery);
     }
 }
