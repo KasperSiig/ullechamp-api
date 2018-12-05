@@ -14,5 +14,6 @@ namespace Ullechamp_Api.Infrastructure.Data
         }
         
         public DbSet<CalenderItem> Calenders { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
