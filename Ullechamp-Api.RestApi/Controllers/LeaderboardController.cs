@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Ullechamp_Api.Core.ApplicationService;
@@ -16,11 +17,18 @@ namespace Ullechamp_Api.RestApi.Controllers
             _userService = userService;
         }
         
-        // GET api/values
+        // GET api/leaderboard
         [HttpGet]
         public ActionResult<IEnumerable<User>> Get([FromQuery]Filter filter)
         {
             return _userService.GetFilteredList(filter);
+        }
+        
+        [HttpGet("search")]
+        public ActionResult<IEnumerable<User>> Get([FromQuery]Filter filter, string search)
+        {
+            Console.WriteLine("Search is fucking: " + search);
+            return _userService.SearchList(filter, search);
         }
 
         // GET api/values/5

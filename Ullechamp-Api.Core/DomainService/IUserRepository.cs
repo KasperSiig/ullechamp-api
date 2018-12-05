@@ -32,6 +32,8 @@ namespace Ullechamp_Api.Core.DomainService
         User ReadById(int id);
         #endregion
 
+        IEnumerable<User> ReadSearchFiltered(Filter filter, string search);
+
         #region Delete
         /// <summary>
         /// Deletes user by id
