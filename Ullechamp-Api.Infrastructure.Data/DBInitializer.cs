@@ -41,7 +41,21 @@ namespace Ullechamp_Api.Infrastructure.Data
                 Assists = 1,
                 KDA = 1.1,
                 WinLoss = 100,
-                Point = 20
+                Point = 50
+            });
+            
+            var user3 = ctx.Users.Add(new User()
+            {
+                Username = "Kasper1992",
+                Role = "Standard",
+                Wins = 0,
+                Losses = 5,
+                Kills = 2,
+                Deaths = 55,
+                Assists = 1,
+                KDA = 1.1,
+                WinLoss = 100,
+                Point = 1
             });
             ctx.SaveChanges();
         }

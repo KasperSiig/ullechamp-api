@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Ullechamp_Api.Core.ApplicationService;
 using Ullechamp_Api.Core.Entity;
+using Ullechamp_Api.RestApi.Dtos;
 
 namespace Ullechamp_Api.RestApi.Controllers
 {
@@ -18,9 +19,25 @@ namespace Ullechamp_Api.RestApi.Controllers
         
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<User>> Get()
+        public ActionResult<IEnumerable<UserDTO>> Get([FromQuery]Filter filter)
         {
-            return Ok(_userService.GetAllUsers());
+            var rankCount = filter.CurrentPage == 1 
+                ? 1 
+                : (filter.CurrentPage - 1) * (filter.ItemsPrPage + 1);
+            var sortedLists = _userService.GetFilteredList(filter);
+            var rankList = new List<UserDTO>();
+            foreach (var sortedList in sortedLists)
+            {
+                var userDto = new UserDTO()
+                {
+                    User = sortedList,
+                    Rank = rankCount++
+                };
+                rankList.Add(userDto);
+            }
+            
+            
+            return rankList;
         }
 
         // GET api/values/5
@@ -51,7 +68,7 @@ namespace Ullechamp_Api.RestApi.Controllers
         {
             if (!id.Equals(user.Id))
             {
-                return BadRequest("Parameter ID and User ID must be the same! Bitch");
+                return BadRequest("Parameter ID and User ID must be the same!");
             }
 
             return _userService.Update(user);

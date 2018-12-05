@@ -48,5 +48,14 @@ namespace Ullechamp_Api.Core.ApplicationService
         /// <returns>Updated user</returns>
         User Update(User user);
         #endregion
+        
+        #region GetFilteredList
+        /// <summary>
+        /// Gets the filtered list of users
+        /// </summary>
+        /// <param name="filter">The filter properties</param>
+        /// <returns>The filtered list of users</returns>
+        List<User> GetFilteredList(Filter filter);
+        #endregion
     }
 }
