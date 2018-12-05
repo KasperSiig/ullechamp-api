@@ -49,5 +49,14 @@ namespace Ullechamp_Api.Core.DomainService
         /// <returns>Updated user</returns>
         User Update(User user);
         #endregion
+
+        #region ReadAll
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        IEnumerable<User> ReadAll(Filter filter);
+        #endregion
     }
 }

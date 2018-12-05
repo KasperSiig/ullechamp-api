@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using Ullechamp_Api.Core.DomainService;
 using Ullechamp_Api.Core.Entity;
@@ -39,6 +41,21 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         public User Update(User user)
         {
             return _userRepo.Update(user);
+        }
+
+        public List<User> GetFilteredList(Filter filter)
+        {
+            if (filter.CurrentPage < 0 || filter.ItemsPrPage < 0)
+            {
+                throw new InvalidDataException("CurrentPage and ItemsPrPage must be zero or more");
+            }
+
+            if ((filter.CurrentPage - 1 * filter.ItemsPrPage) >= _userRepo.Count())
+            {
+                throw new InvalidDataException("Index out of bounds, CurrentPage is to high");
+            }
+
+            return _userRepo.ReadAll(filter);
         }
     }
 }

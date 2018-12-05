@@ -51,7 +51,7 @@ namespace Ullechamp_Api.RestApi.Controllers
         {
             if (!id.Equals(user.Id))
             {
-                return BadRequest("Parameter ID and User ID must be the same! Bitch");
+                return BadRequest("Parameter ID and User ID must be the same!");
             }
 
             return _userService.Update(user);
