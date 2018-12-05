@@ -49,5 +49,22 @@ namespace Ullechamp_Api.Core.DomainService
         /// <returns>Updated user</returns>
         User Update(User user);
         #endregion
+
+        #region ReadAllFiltered
+        /// <summary>
+        /// Gets the filtered list of users
+        /// </summary>
+        /// <param name="filter">The filter properties</param>
+        /// <returns>Filtered list of users</returns>
+        IEnumerable<User> ReadAllFiltered(Filter filter = null);
+        #endregion
+
+        #region Count
+        /// <summary>
+        /// Counts numbers of users in filtered list
+        /// </summary>
+        /// <returns>Total of users</returns>
+        int Count();
+        #endregion
     }
 }
