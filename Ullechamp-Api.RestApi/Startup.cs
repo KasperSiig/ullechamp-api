@@ -52,6 +52,9 @@ namespace Ullechamp_Api.RestApi
             
             services.AddScoped<ICalenderRepository, CalenderRepository>();
             services.AddScoped<ICalenderService, CalenderService>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
             
             services.AddMvc().AddJsonOptions(options =>
             {
