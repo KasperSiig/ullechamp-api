@@ -12,13 +12,21 @@ namespace UllechampTest
 {
     public class UserServiceTest
     {
-        
-        private static Mock<IUserRepository> CreateNewMoqRepository()
+        Filter filter = new Filter()
         {
+            CurrentPage = 1,
+            ItemsPrPage = 1
+                   
+        };
+        
+        private Mock<IUserRepository> CreateNewMoqRepository()
+        {
+            
             var repository = new Mock<IUserRepository>();
             repository.Setup(r => r.ReadAllUsers())
                 .Returns(SampleUsers());
             repository.Setup(x => x.ReadById(2)).Returns(SampleUsers()[1]);
+            repository.Setup(x => x.ReadSearchFiltered(filter, "Jesper")).Returns(SampleUsers());
             
             return repository;
         }
@@ -39,7 +47,7 @@ namespace UllechampTest
                 WinLoss = 100,
                 Point = 20 }, new User() {
                 Id = 2,
-                Username = "Oliver1992",
+                Username = "Jesper1992",
                 Role = "Standard",
                 Wins = 0,
                 Losses = 5,
@@ -155,6 +163,18 @@ namespace UllechampTest
             int expectedId = 2;
             
             Assert.Equal(expectedId, UserId.Id);
+        }
+
+        [Fact]
+        private void SearchUsers()
+        {
+            var repository = CreateNewMoqRepository();
+            IUserService service = new UserService(repository.Object);
+
+
+            var search = service.SearchList(filter, "Jesper");
+            
+            repository.Verify( x => x.ReadSearchFiltered(filter, "Jesper"), Times.Once);
         }
     }
 }
