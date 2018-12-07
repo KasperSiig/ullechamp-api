@@ -78,7 +78,6 @@
         <e p="Controllers" t="Include">
           <e p="CalenderItemsController.cs" t="Include" />
           <e p="LeaderboardController.cs" t="Include" />
-          <e p="ValuesController.cs" t="Include" />
         </e>
         <e p="Dockerfile" t="Include" />
         <e p="Dtos" t="Include" />

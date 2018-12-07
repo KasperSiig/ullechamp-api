@@ -21,9 +21,8 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         }
         
         public List<CalenderItem> GetCalenders()
-        {
-            var calenders = _calRepo.ReadCalender();
-            return calenders.ToList();
+        { 
+            return _calRepo.ReadCalender().ToList();
         }
     }
 }

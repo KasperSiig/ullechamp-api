@@ -19,14 +19,12 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         
         public User CreateUser(User user)
         {
-            
             return _userRepo.CreateUser(user);
         }
 
         public List<User> GetAllUsers()
         {
-            var users = _userRepo.ReadAllUsers();
-            return users.ToList();
+            return _userRepo.ReadAllUsers().ToList();
         }
 
         public User GetById(int id)
@@ -41,23 +39,16 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
 
         public User Update(User user)
         {
-            var updateUser = _userRepo.Update(user);
-            
-            
-            return updateUser;
+            return _userRepo.Update(user);
         }
 
         public List<User> GetFilteredList(Filter filter)
         {
             if (filter.CurrentPage < 0 || filter.ItemsPrPage < 0)
-            {
                 throw new InvalidDataException("CurrentPage and ItemsPrPage must be zero or more");
-            }
 
             if ((filter.CurrentPage - 1 * filter.ItemsPrPage) >= _userRepo.Count())
-            {
-                throw new InvalidDataException("Index out of bounds, CurrentPage is to high");
-            }
+                throw new InvalidDataException("Index out of bounds, CurrentPage is too high");
 
             return _userRepo.ReadAllFiltered(filter).ToList();
         }

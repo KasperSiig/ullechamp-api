@@ -13,7 +13,7 @@ namespace UllechampTest
     public class UserServiceTest
     {
         
-        private static Mock<IUserRepository> CreateNewMoqRepository()
+        private Mock<IUserRepository> CreateNewMoqRepository()
         {
             var repository = new Mock<IUserRepository>();
             repository.Setup(r => r.ReadAllUsers())
@@ -23,7 +23,7 @@ namespace UllechampTest
             return repository;
         }
         
-        private static List<User> SampleUsers()
+        private List<User> SampleUsers()
         {
             return new List<User>()
             {
@@ -35,9 +35,11 @@ namespace UllechampTest
                 Kills = 2,
                 Deaths = 55,
                 Assists = 1,
-                KDA = 1.1,
+                Kda = 1.1,
                 WinLoss = 100,
-                Point = 20 }, new User() {
+                Point = 20 }, 
+                
+                new User() {
                 Id = 2,
                 Username = "Oliver1992",
                 Role = "Standard",
@@ -46,7 +48,7 @@ namespace UllechampTest
                 Kills = 2,
                 Deaths = 55,
                 Assists = 1,
-                KDA = 1.1,
+                Kda = 1.1,
                 WinLoss = 100,
                 Point = 20 }
             };
@@ -68,7 +70,7 @@ namespace UllechampTest
                 Kills = 2,
                 Deaths = 55,
                 Assists = 1,
-                KDA = 1.1,
+                Kda = 1.1,
                 WinLoss = 100,
                 Point = 20
             };
@@ -94,7 +96,7 @@ namespace UllechampTest
                 Kills = 2,
                 Deaths = 55,
                 Assists = 1,
-                KDA = 1.1,
+                Kda = 1.1,
                 WinLoss = 100,
                 Point = 20
             };
@@ -120,7 +122,7 @@ namespace UllechampTest
                 Kills = 2,
                 Deaths = 55,
                 Assists = 1,
-                KDA = 1.1,
+                Kda = 1.1,
                 WinLoss = 100,
                 Point = 20
             };
@@ -131,30 +133,27 @@ namespace UllechampTest
         }
         
         [Fact]
-        private void GetAllUsers()
+        private void TestGetAllUserCountNoException()
         {
             var repository = CreateNewMoqRepository();
             IUserService service = new UserService(repository.Object);
 
-            int expectedResult = 2;
+            var expected = 2;
+            var actual = service.GetAllUsers().Count();
 
-            var countOfUsers = service.GetAllUsers().Count();
-
-            Assert.Equal(expectedResult, countOfUsers);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [InlineData(2)]
-        private void GetUserById(int id)
+        [InlineData(2, 2)]
+        private void GetUserById(int id, int expected)
         {
             var repository = CreateNewMoqRepository();
             IUserService service = new UserService(repository.Object);
-
-            var UserId = service.GetById(id);
-
-            int expectedId = 2;
             
-            Assert.Equal(expectedId, UserId.Id);
+            var actual = service.GetById(id).Id;
+            
+            Assert.Equal(expected, actual);
         }
     }
 }

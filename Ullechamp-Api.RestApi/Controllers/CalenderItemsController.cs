@@ -10,43 +10,35 @@ namespace Ullechamp_Api.RestApi.Controllers
     public class CalenderItemsController : ControllerBase
     {
         private readonly ICalenderService _calenderService;
-
+       
+        /// <summary>
+        /// Initialize CalenderService
+        /// </summary>
+        /// <param name="calenderService"></param>
         public CalenderItemsController(ICalenderService calenderService)
         {
             _calenderService = calenderService;
         }
         
-        // GET api/values
+        /// <summary>
+        /// Get all calenderItems
+        /// </summary>
+        /// <returns>All CalenderItem</returns>
         [HttpGet]
         public ActionResult<IEnumerable<CalenderItem>> Get()
         {
             return Ok(_calenderService.GetCalenders());
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
+        /// <summary>
+        /// Creates a calenderItem
+        /// </summary>
+        /// <param name="calenderItem">CalenderItem to be created</param>
+        /// <returns>Created CalenderItem</returns>
         [HttpPost]
         public ActionResult<CalenderItem> Post([FromBody] CalenderItem calenderItem)
         {
             return Ok(_calenderService.CreateCalender(calenderItem));
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

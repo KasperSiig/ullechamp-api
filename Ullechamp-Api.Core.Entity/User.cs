@@ -12,7 +12,7 @@ namespace Ullechamp_Api.Core.Entity
         public int Kills { get; set; }
         public int Deaths { get; set; }
         public int Assists { get; set; }
-        public double KDA { get; set; }
+        public double Kda { get; set; }
         public int WinLoss { get; set; }
         public int Point { get; set; }
         public int Rank { get; set; }
