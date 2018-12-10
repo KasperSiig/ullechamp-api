@@ -55,6 +55,9 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
 
         public List<User> SearchList(Filter filter, string searchQuery)
         {
+            if (searchQuery == null)
+                GetAllUsers();
+            
             return _userRepo.ReadSearchFiltered(filter, searchQuery).ToList();
         }
     }
