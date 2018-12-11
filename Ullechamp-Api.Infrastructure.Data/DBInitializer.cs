@@ -11,12 +11,12 @@ namespace Ullechamp_Api.Infrastructure.Data
             ctx.Database.EnsureDeleted();
             ctx.Database.EnsureCreated();
             
-            var calender1 = ctx.Calenders.Add(new CalenderItem()
+            var calender1 = ctx.CalenderItems.Add(new CalenderItem()
                 {
                     NextEvent = new DateTime(2018, 12, 04)
-                });
+                }).Entity;
 
-            var user1 = ctx.Users.Add(new User()
+            var oliver = ctx.Users.Add(new User()
             {
                 Username = "Oliver1992",
                 Role = "Standard",
@@ -25,12 +25,12 @@ namespace Ullechamp_Api.Infrastructure.Data
                 Kills = 2,
                 Deaths = 55,
                 Assists = 1,
-                KDA = 1.1,
+                Kda = 1.1,
                 WinLoss = 100,
                 Point = 20
-            });
+            }).Entity;
 
-            var user2 = ctx.Users.Add(new User()
+            var jesper = ctx.Users.Add(new User()
             {
                 Username = "Jesper1992",
                 Role = "Standard",
@@ -39,12 +39,12 @@ namespace Ullechamp_Api.Infrastructure.Data
                 Kills = 2,
                 Deaths = 55,
                 Assists = 1,
-                KDA = 1.1,
+                Kda = 1.1,
                 WinLoss = 100,
                 Point = 50
-            });
+            }).Entity;
             
-            var user3 = ctx.Users.Add(new User()
+            var kasper = ctx.Users.Add(new User()
             {
                 Username = "Kasper1992",
                 Role = "Standard",
@@ -53,10 +53,10 @@ namespace Ullechamp_Api.Infrastructure.Data
                 Kills = 2,
                 Deaths = 55,
                 Assists = 1,
-                KDA = 1.1,
+                Kda = 1.1,
                 WinLoss = 100,
                 Point = 1
-            });
+            }).Entity;
             ctx.SaveChanges();
         }
     }

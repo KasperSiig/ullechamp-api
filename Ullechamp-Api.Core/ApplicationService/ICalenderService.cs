@@ -14,8 +14,7 @@ namespace Ullechamp_Api.Core.ApplicationService
         CalenderItem CreateCalender(CalenderItem calenderItem);
         #endregion
 
-
-        #region ReadAll
+        #region Read
         /// <summary>
         /// Reads all calenders from database
         /// </summary>

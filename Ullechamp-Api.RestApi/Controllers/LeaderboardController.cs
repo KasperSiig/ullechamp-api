@@ -11,27 +11,44 @@ namespace Ullechamp_Api.RestApi.Controllers
     public class LeaderboardController : ControllerBase
     {
         private readonly IUserService _userService;
-
+       
+        /// <summary>
+        /// Initialize LeaderboardController
+        /// </summary>
+        /// <param name="userService"></param>
         public LeaderboardController(IUserService userService)
         {
             _userService = userService;
         }
         
-        // GET api/leaderboard
+        /// <summary>
+        /// Gets all Users
+        /// </summary>
+        /// <param name="filter">Filter to implement pagination</param>
+        /// <returns>Filtered Users</returns>
         [HttpGet]
         public ActionResult<IEnumerable<User>> Get([FromQuery]Filter filter)
         {
-            return _userService.GetFilteredList(filter);
+            return Ok(_userService.GetFilteredList(filter));
         }
         
+        /// <summary>
+        /// Gets list of searched Users
+        /// </summary>
+        /// <param name="filter">The filter properties</param>
+        /// <param name="search">Search String</param>
+        /// <returns>List of filtered Users</returns>
         [HttpGet("search")]
         public ActionResult<IEnumerable<User>> Get([FromQuery]Filter filter, string search)
         {
-            Console.WriteLine("Search is fucking: " + search);
-            return _userService.SearchList(filter, search);
+            return Ok(_userService.SearchList(filter, search));
         }
 
-        // GET api/values/5
+        /// <summary>
+        /// Gets User by id 
+        /// </summary>
+        /// <param name="id">Id of User</param>
+        /// <returns>The User with the specified id</returns>
         [HttpGet("{id}")]
         public ActionResult<User> Get(int id)
         {
@@ -46,30 +63,41 @@ namespace Ullechamp_Api.RestApi.Controllers
             }
         }
 
-        // POST api/values
+        /// <summary>
+        /// Creates a User
+        /// </summary>
+        /// <param name="user">The Users properties</param>
+        /// <returns>Created User</returns>
         [HttpPost]
         public ActionResult<User> Post([FromBody] User user)
         {
             return Ok(_userService.CreateUser(user));
         }
 
-        // PUT api/values/5
+        /// <summary>
+        /// Updates selected User
+        /// </summary>
+        /// <param name="id">Id of the User</param>
+        /// <param name="user">Properties of the User</param>
+        /// <returns>Updated User</returns>
         [HttpPut("{id}")]
         public ActionResult<User> Put(int id, [FromBody] User user)
         {
             if (!id.Equals(user.Id))
-            {
                 return BadRequest("Parameter ID and User ID must be the same!");
-            }
 
-            return _userService.Update(user);
+            return Ok(_userService.Update(user));
         }
 
-        // DELETE api/values/5
+        /// <summary>
+        /// Deletes User
+        /// </summary>
+        /// <param name="id">Id of the User</param>
+        /// <returns>Ok</returns>
         [HttpDelete("{id}")]
         public ActionResult<User> Delete(int id)
         {
-            return _userService.Delete(id);
+            return Ok(_userService.Delete(id));
         }
     }
 }

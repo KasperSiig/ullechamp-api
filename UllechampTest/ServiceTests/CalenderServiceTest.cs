@@ -14,8 +14,9 @@ namespace UllechampTest
 {
     public class CalenderServiceTest
     {
-        private static Mock<ICalenderRepository> CreateNewMoqRepository()
+        private Mock<ICalenderRepository> CreateNewMoqRepository()
         {
+            //Setup mock repository
             var repository = new Mock<ICalenderRepository>();
             repository.Setup(r => r.ReadCalender())
                 .Returns(SampleCalenderItems());
@@ -23,7 +24,7 @@ namespace UllechampTest
             return repository;
         }
         
-        private static List<CalenderItem> SampleCalenderItems()
+        private List<CalenderItem> SampleCalenderItems()
         {
             return new List<CalenderItem>()
             {
@@ -31,21 +32,25 @@ namespace UllechampTest
             };
         }
 
+        /// <summary>
+        /// Checks setup is working
+        /// </summary>
         [Fact]
         private void CalenderTestSetup()
         {
-            var repository = CreateNewMoqRepository();
+            var repository = CreateNewMoqRepository().Object;
 
-            var all = repository.Object.ReadCalender().Count();
+            var expected = 1;
+            var actual = repository.ReadCalender().Count();
             
-            Assert.Equal(1, all);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void VerifyCreateCalenderRunsOneTime()
         {
-            var mockObject = new Mock<ICalenderRepository>();
-            var service = new CalenderService(mockObject.Object);
+            var mockRepo = new Mock<ICalenderRepository>();
+            var service = new CalenderService(mockRepo.Object);
 
             var item = new CalenderItem()
             {
@@ -55,14 +60,14 @@ namespace UllechampTest
 
             service.CreateCalender(item);
 
-            mockObject.Verify(p => p.CreateCalender(item), Times.Once);
+            mockRepo.Verify(p => p.CreateCalender(item), Times.Once);
         }
 
         [Fact]
         public void VerifyGetAllCalendersRunsOneTime()
         {
-            var mockObject = new Mock<ICalenderRepository>();
-            var service = new CalenderService(mockObject.Object);
+            var mockRepo = new Mock<ICalenderRepository>();
+            var service = new CalenderService(mockRepo.Object);
 
             var item = new CalenderItem()
             {
@@ -72,20 +77,19 @@ namespace UllechampTest
 
             service.GetCalenders();
 
-            mockObject.Verify(p => p.ReadCalender(), Times.Once);
+            mockRepo.Verify(p => p.ReadCalender(), Times.Once);
         }
         
         [Fact]
-        private void GetAllCalenders()
+        private void TestGetAllCalendersExpectNoException()
         {
             var repository = CreateNewMoqRepository();
             ICalenderService service = new CalenderService(repository.Object);
 
-            int expectedResult = 1;
+            var expected = 1;
+            var actual = service.GetCalenders().Count();
 
-            var countOfCalenders = service.GetCalenders().Count();
-
-            Assert.Equal(expectedResult, countOfCalenders);
+            Assert.Equal(expected, actual);
         }
 
     }
