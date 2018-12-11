@@ -2,24 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0166dcbc-8186-48e2-8916-2a30a82844ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/ITokenService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/TokenService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/TokenController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Managers/TokenManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ullechamp-Api.RestApi/Properties/PublishProfiles/ullechamp - Web Deploy.pubxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ullechamp-Api/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ullechamp-Api/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Ullechamp-Api/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Ullechamp-Api/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.Core.Entity/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.Core.Entity/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/IUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.Core/DomainService/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.Core/DomainService/IUserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.Core/Ullechamp-Api.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.Core/Ullechamp-Api.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/DBInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/DBInitializer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Repositories/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/UllechampContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/UllechampContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.RestApi/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.RestApi/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.RestApi/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.RestApi/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.RestApi/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.RestApi/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Ullechamp-Api.Infrastructure.Data.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Ullechamp-Api.Infrastructure.Data.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/LeaderboardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/LeaderboardController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/TokenController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/TokenController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ullechamp-Api.RestApi/ullechamp.db" beforeDir="false" afterPath="$PROJECT_DIR$/Ullechamp-Api.RestApi/ullechamp.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UllechampTest/ServiceTests/UserServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UllechampTest/ServiceTests/UserServiceTest.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,33 +60,33 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="Dockerfile" value="1" />
+          <entry key="Dockerfile" value="3" />
           <entry key="calenderitems" value="1" />
-          <entry key="cs" value="31" />
-          <entry key="json" value="4" />
+          <entry key="cs" value="38" />
+          <entry key="json" value="6" />
           <entry key="sql" value="2" />
           <entry key="users" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="C#" value="31" />
+          <entry key="C#" value="38" />
           <entry key="Database Element" value="3" />
-          <entry key="Dockerfile" value="1" />
-          <entry key="JSON" value="4" />
+          <entry key="Dockerfile" value="3" />
+          <entry key="JSON" value="6" />
           <entry key="Scratch" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cs" value="2728" />
+          <entry key="cs" value="3188" />
           <entry key="json" value="181" />
           <entry key="sql" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="C#" value="2728" />
+          <entry key="C#" value="3188" />
           <entry key="JSON" value="181" />
           <entry key="Scratch" value="30" />
         </counts>
@@ -171,235 +161,201 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.8101545">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/TokenController.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="402">
-                  <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
-                  <folding>
-                    <marker date="1544538488925" expanded="true" signature="6:261" ph="..." />
-                    <marker date="1544538488925" expanded="true" signature="306:1900" ph="{...}" />
-                    <marker date="1544538488925" expanded="true" signature="406:1898" ph="{...}" />
-                    <marker date="1544538488925" expanded="true" signature="658:760" ph="{...}" />
-                    <marker date="1544538488925" expanded="true" signature="844:1892" ph="{...}" />
-                    <marker date="1544538488925" expanded="true" signature="1267:1816" ph="{...}" />
-                    <marker date="1544538488925" expanded="true" signature="1524:1751" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/UserService.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="448">
-                  <caret line="64" column="41" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
-                  <folding>
-                    <marker date="1544537526695" expanded="false" signature="6:190" ph="..." />
-                    <marker date="1544537526695" expanded="true" signature="244:3160" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="290:3158" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="402:456" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="499:566" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="607:681" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="718:781" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="817:878" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="953:2192" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="992:2182" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="2243:2320" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="2359:2422" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="2480:2911" ph="{...}" />
-                    <marker date="1544537526695" expanded="true" signature="2984:3152" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/DomainService/IUserRepository.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="318">
-                  <caret line="52" column="35" selection-start-line="52" selection-start-column="35" selection-end-line="52" selection-end-column="35" />
-                  <folding>
-                    <marker date="1544537526666" expanded="false" signature="6:66" ph="..." />
-                    <marker date="1544537526666" expanded="true" signature="110:2305" ph="{...}" />
-                    <marker date="1544537526666" expanded="true" signature="149:2303" ph="{...}" />
-                    <marker date="1544537526666" expanded="false" signature="173:448" ph="Create" />
-                    <marker date="1544537526666" expanded="true" signature="196:393" ph="/// Creates a user in the database ... " />
-                    <marker date="1544537526666" expanded="true" signature="466:1748" ph="Read" />
-                    <marker date="1544537526666" expanded="true" signature="487:629" ph="/// Reads all users from the database ... " />
-                    <marker date="1544537526666" expanded="true" signature="681:855" ph="/// Reads a user by id ... " />
-                    <marker date="1544537526666" expanded="true" signature="904:1145" ph="/// Reads searched Users ... " />
-                    <marker date="1544537526666" expanded="true" signature="1239:1436" ph="/// Gets the filtered list of users ... " />
-                    <marker date="1544537526666" expanded="true" signature="1519:1654" ph="/// Counts numbers of users in filtered list ... " />
-                    <marker date="1544537526666" expanded="false" signature="1758:2019" ph="Update" />
-                    <marker date="1544537526666" expanded="true" signature="1781:1968" ph="/// Updates user by id from database ... " />
-                    <marker date="1544537526666" expanded="false" signature="2029:2286" ph="Delete" />
-                    <marker date="1544537526666" expanded="true" signature="2052:2238" ph="/// Deletes user by id ... " />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/IUserService.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="341">
-                  <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
-                  <folding>
-                    <marker date="1544537526689" expanded="false" signature="6:66" ph="..." />
-                    <marker date="1544537526689" expanded="true" signature="115:2501" ph="{...}" />
-                    <marker date="1544537526689" expanded="true" signature="151:2499" ph="{...}" />
-                    <marker date="1544537526689" expanded="true" signature="166:445" ph="Create" />
-                    <marker date="1544537526689" expanded="true" signature="189:390" ph="/// Creates a user in the database ... " />
-                    <marker date="1544537526689" expanded="true" signature="463:1931" ph="Read" />
-                    <marker date="1544537526689" expanded="true" signature="484:618" ph="/// Gets all users from the database ... " />
-                    <marker date="1544537526689" expanded="true" signature="670:861" ph="/// Gets a user by id from the database ... " />
-                    <marker date="1544537526689" expanded="true" signature="909:1110" ph="/// Gets the filtered list of users ... " />
-                    <marker date="1544537526689" expanded="true" signature="1179:1448" ph="/// Searches all Users based on a searchQuery ... " />
-                    <marker date="1544537526689" expanded="true" signature="1532:1791" ph="/// Gets all Users in a specific order ... " />
-                    <marker date="1544537526689" expanded="false" signature="1941:2202" ph="Update" />
-                    <marker date="1544537526689" expanded="true" signature="1964:2151" ph="/// Updates user by id from database ... " />
-                    <marker date="1544537526689" expanded="false" signature="2220:2482" ph="Delete" />
-                    <marker date="1544537526689" expanded="true" signature="2243:2434" ph="/// Deletes user by id ... " />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/UllechampContext.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="386">
-                  <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
-                  <folding>
-                    <marker date="1544535291148" expanded="false" signature="6:69" ph="..." />
-                    <marker date="1544535291148" expanded="true" signature="114:1646" ph="{...}" />
-                    <marker date="1544535291148" expanded="true" signature="162:1644" ph="{...}" />
-                    <marker date="1544535291148" expanded="true" signature="242:262" ph="{...}" />
-                    <marker date="1544535291148" expanded="true" signature="338:1519" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Repositories/UserRepository.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="433">
-                  <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
-                  <folding>
-                    <marker date="1544537526678" expanded="false" signature="6:176" ph="..." />
-                    <marker date="1544537526678" expanded="true" signature="234:2950" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="286:2948" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="393:437" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="480:619" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="668:719" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="757:840" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="876:1030" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="1082:1175" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="1214:1378" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="1444:1517" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="1600:1877" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="1965:2374" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="2402:2461" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="2496:2942" ph="{...}" />
-                    <marker date="1544537526678" expanded="true" signature="2692:2900" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core.Entity/User.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <folding>
-                    <marker date="1544538329215" expanded="true" signature="50:699" ph="{...}" />
-                    <marker date="1544538329215" expanded="true" signature="74:697" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/ITokenService.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-                  <folding>
-                    <marker date="1544534510533" expanded="true" signature="6:57" ph="..." />
-                    <marker date="1544534510533" expanded="true" signature="106:321" ph="{...}" />
-                    <marker date="1544534510533" expanded="true" signature="143:319" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/TokenService.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="343">
-                  <caret line="58" selection-start-line="58" selection-end-line="58" />
-                  <folding>
-                    <marker date="1544534633755" expanded="true" signature="6:122" ph="..." />
-                    <marker date="1544534633755" expanded="true" signature="176:2277" ph="{...}" />
-                    <marker date="1544534633755" expanded="true" signature="224:2275" ph="{...}" />
-                    <marker date="1544534633755" expanded="true" signature="424:523" ph="{...}" />
-                    <marker date="1544534633755" expanded="true" signature="582:1211" ph="{...}" />
-                    <marker date="1544534633755" expanded="true" signature="1276:1752" ph="{...}" />
-                    <marker date="1544534633755" expanded="true" signature="1831:2269" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Startup.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="312">
-                  <caret line="58" column="62" selection-start-line="58" selection-start-column="62" selection-end-line="58" selection-end-column="62" />
-                  <folding>
-                    <marker date="1544531708574" expanded="false" signature="6:692" ph="..." />
-                    <marker date="1544531708574" expanded="true" signature="725:3556" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="752:3554" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="895:1299" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="1469:2481" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="1540:1696" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="1713:1784" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="2254:2379" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="2669:3548" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="2738:3056" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="2875:3042" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="3073:3376" ph="{...}" />
-                    <marker date="1544531708574" expanded="true" signature="3161:3331" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core.Entity/User.cs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-                  <folding>
-                    <marker date="1544538329215" expanded="true" signature="50:699" ph="{...}" />
-                    <marker date="1544538329215" expanded="true" signature="74:697" ph="{...}" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/TokenController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="790">
+              <caret line="68" column="65" selection-start-line="68" selection-start-column="65" selection-end-line="68" selection-end-column="65" />
+              <folding>
+                <marker date="1544547859331" expanded="true" signature="6:311" ph="..." />
+                <marker date="1544547859331" expanded="true" signature="356:2562" ph="{...}" />
+                <marker date="1544547859331" expanded="true" signature="456:2560" ph="{...}" />
+                <marker date="1544547859331" expanded="true" signature="761:1057" ph="{...}" />
+                <marker date="1544547859331" expanded="true" signature="1141:2554" ph="{...}" />
+                <marker date="1544547859331" expanded="true" signature="1699:2262" ph="{...}" />
+                <marker date="1544547859331" expanded="true" signature="1956:2183" ph="{...}" />
+                <marker date="1544547859331" expanded="true" signature="2300:2395" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/appsettings.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="59" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UllechampTest/ServiceTests/CalenderServiceTest.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-510">
+              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+              <folding>
+                <marker date="1544528749651" expanded="false" signature="6:367" ph="..." />
+                <marker date="1544528749651" expanded="true" signature="392:2699" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="431:2697" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="504:767" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="833:1008" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="900:997" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="1018:1090" ph="/// Checks setup is working ... " />
+                <marker date="1544528749651" expanded="true" signature="1146:1376" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="1446:1853" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="1636:1728" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="1924:2319" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="2114:2206" ph="{...}" />
+                <marker date="1544528749651" expanded="true" signature="2403:2690" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Managers/TokenManager.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+              <folding>
+                <marker date="1544547826237" expanded="true" signature="6:206" ph="..." />
+                <marker date="1544547826237" expanded="true" signature="260:1633" ph="{...}" />
+                <marker date="1544547826237" expanded="true" signature="292:1631" ph="{...}" />
+                <marker date="1544547826237" expanded="true" signature="515:645" ph="{...}" />
+                <marker date="1544547826237" expanded="true" signature="724:1625" ph="{...}" />
+                <marker date="1544547826237" expanded="true" signature="788:1097" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/TokenService.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="40" column="53" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="53" />
+              <folding>
+                <marker date="1544534633755" expanded="false" signature="6:122" ph="..." />
+                <marker date="1544534633755" expanded="true" signature="176:2277" ph="{...}" />
+                <marker date="1544534633755" expanded="true" signature="224:2275" ph="{...}" />
+                <marker date="1544534633755" expanded="true" signature="424:523" ph="{...}" />
+                <marker date="1544534633755" expanded="true" signature="582:1211" ph="{...}" />
+                <marker date="1544534633755" expanded="true" signature="1276:1752" ph="{...}" />
+                <marker date="1544534633755" expanded="true" signature="1831:2269" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/LeaderboardController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+              <folding>
+                <marker date="1544549254242" expanded="false" signature="6:199" ph="..." />
+                <marker date="1544549254242" expanded="true" signature="244:3674" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="350:3672" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="425:553" ph="/// Initialize LeaderboardController ... " />
+                <marker date="1544549254242" expanded="true" signature="616:676" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="694:875" ph="/// Gets all Users ... " />
+                <marker date="1544549254242" expanded="true" signature="990:1071" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="1081:1340" ph="/// Gets all users in specific order ... " />
+                <marker date="1544549254242" expanded="true" signature="1460:1551" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="1561:1809" ph="/// Gets list of searched Users ... " />
+                <marker date="1544549254242" expanded="true" signature="1929:2013" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="2023:2198" ph="/// Gets User by id  ... " />
+                <marker date="1544549254242" expanded="true" signature="2270:2511" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="2359:2420" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="2437:2501" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="2521:2688" ph="/// Creates a User ... " />
+                <marker date="1544549254242" expanded="true" signature="2768:2842" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="2852:3080" ph="/// Updates selected User ... " />
+                <marker date="1544549254242" expanded="true" signature="3174:3363" ph="{...}" />
+                <marker date="1544549254242" expanded="true" signature="3373:3520" ph="/// Deletes User ... " />
+                <marker date="1544549254242" expanded="true" signature="3598:3666" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/CalenderItemsController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+              <folding>
+                <marker date="1544528749649" expanded="false" signature="6:143" ph="..." />
+                <marker date="1544528749649" expanded="true" signature="188:1346" ph="{...}" />
+                <marker date="1544528749649" expanded="true" signature="296:1344" ph="{...}" />
+                <marker date="1544528749649" expanded="true" signature="379:505" ph="/// Initialize CalenderService ... " />
+                <marker date="1544528749649" expanded="true" signature="578:646" ph="{...}" />
+                <marker date="1544528749649" expanded="true" signature="664:782" ph="/// Get all calenderItems ... " />
+                <marker date="1544528749649" expanded="true" signature="861:937" ph="{...}" />
+                <marker date="1544528749649" expanded="true" signature="947:1144" ph="/// Creates a calenderItem ... " />
+                <marker date="1544528749649" expanded="true" signature="1248:1338" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/UserService.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="448">
+              <caret line="64" column="41" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
+              <folding>
+                <marker date="1544537526695" expanded="false" signature="6:190" ph="..." />
+                <marker date="1544537526695" expanded="true" signature="244:3160" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="290:3158" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="402:456" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="499:566" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="607:681" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="718:781" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="817:878" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="953:2192" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="992:2182" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="2243:2320" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="2359:2422" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="2480:2911" ph="{...}" />
+                <marker date="1544537526695" expanded="true" signature="2984:3152" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Startup.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-54">
+              <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+              <folding>
+                <marker date="1544531708574" expanded="false" signature="6:692" ph="..." />
+                <marker date="1544531708574" expanded="true" signature="725:3556" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="752:3554" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="895:1299" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="1469:2481" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="1540:1696" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="1713:1784" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="2254:2379" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="2669:3548" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="2738:3056" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="2875:3042" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="3073:3376" ph="{...}" />
+                <marker date="1544531708574" expanded="true" signature="3161:3331" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -417,6 +373,7 @@
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Core/DomainService/ICalenderRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/ICalenderService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Repositories/CalenderRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/UllechampTest/ServiceTests/UserServiceTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/ITokenService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/UserService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Core/DomainService/IUserRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -427,6 +384,7 @@
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Core.Entity/User.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/CalenderItemsController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/UllechampTest/ServiceTests/CalenderServiceTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Managers/TokenManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Core.Entity/CalenderItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/DBInitializer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/UllechampContext.cs" root0="FORCE_HIGHLIGHTING" />
@@ -478,7 +436,9 @@
         <option value="$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/UserService.cs" />
         <option value="$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/IUserService.cs" />
         <option value="$PROJECT_DIR$/Ullechamp-Api.Core.Entity/User.cs" />
+        <option value="$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Managers/TokenManager.cs" />
         <option value="$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/TokenController.cs" />
+        <option value="$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/LeaderboardController.cs" />
       </list>
     </option>
   </component>
@@ -561,6 +521,13 @@
               <item name="Ullechamp-Api" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Infrastructure" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Ullechamp-Api.Infrastructure.Data" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Managers" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Ullechamp-Api" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Infrastructure" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Ullechamp-Api.Infrastructure.Data" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Repositories" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
@@ -580,6 +547,17 @@
               <item name="UI" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Ullechamp-Api.RestApi" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Controllers" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Ullechamp-Api" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="UllechampTest" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Ullechamp-Api" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="UllechampTest" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="ServiceTests" type="24d0babc:SolutionExplorerModelNode" />
             </path>
           </expand>
           <select />
@@ -650,7 +628,7 @@
       <workItem from="1543840218863" duration="26158000" />
       <workItem from="1543928192481" duration="565000" />
       <workItem from="1544024887388" duration="1405000" />
-      <workItem from="1544355264975" duration="12199000" />
+      <workItem from="1544355264975" duration="17361000" />
     </task>
     <task id="LOCAL-00001" summary="Added calender item and unit test">
       <created>1543850654593</created>
@@ -677,7 +655,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64929000" />
+    <option name="totallyTimeSpent" value="70091000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -692,13 +670,13 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26817447" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26817447" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" weight="0.32876712" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24931507" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24931507" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39863014" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -745,9 +723,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/Class1.cs" />
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core.Entity/Class1.cs" />
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Properties/AssemblyInfo.cs" />
@@ -758,13 +733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UllechampTest/ServiceTests/CalenderServiceTest.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -789,7 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UllechampTest/ServiceTests/UserServiceTest.cs" />
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core.Entity/FilteredList.cs" />
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Dtos/UserDTO.cs" />
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/CalenderService.cs">
@@ -859,24 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/CalenderItemsController.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-          <folding>
-            <marker date="1544528749649" expanded="false" signature="6:143" ph="..." />
-            <marker date="1544528749649" expanded="true" signature="188:1346" ph="{...}" />
-            <marker date="1544528749649" expanded="true" signature="296:1344" ph="{...}" />
-            <marker date="1544528749649" expanded="true" signature="379:505" ph="/// Initialize CalenderService ... " />
-            <marker date="1544528749649" expanded="true" signature="578:646" ph="{...}" />
-            <marker date="1544528749649" expanded="true" signature="664:782" ph="/// Get all calenderItems ... " />
-            <marker date="1544528749649" expanded="true" signature="861:937" ph="{...}" />
-            <marker date="1544528749649" expanded="true" signature="947:1144" ph="/// Creates a calenderItem ... " />
-            <marker date="1544528749649" expanded="true" signature="1248:1338" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core.Entity/Filter.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -885,43 +834,6 @@
             <marker date="1544024086711" expanded="true" signature="35:165" ph="{...}" />
             <marker date="1544024086711" expanded="true" signature="61:163" ph="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/LeaderboardController.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="9" selection-end-column="19" />
-          <folding>
-            <marker date="1544528749650" expanded="false" signature="6:157" ph="..." />
-            <marker date="1544528749650" expanded="true" signature="202:3612" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="308:3610" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="383:511" ph="/// Initialize LeaderboardController ... " />
-            <marker date="1544528749650" expanded="true" signature="574:634" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="652:833" ph="/// Gets all Users ... " />
-            <marker date="1544528749650" expanded="true" signature="928:1009" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="1019:1278" ph="/// Gets all users in specific order ... " />
-            <marker date="1544528749650" expanded="true" signature="1398:1489" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="1499:1747" ph="/// Gets list of searched Users ... " />
-            <marker date="1544528749650" expanded="true" signature="1867:1951" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="1961:2136" ph="/// Gets User by id  ... " />
-            <marker date="1544528749650" expanded="true" signature="2208:2449" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="2297:2358" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="2375:2439" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="2459:2626" ph="/// Creates a User ... " />
-            <marker date="1544528749650" expanded="true" signature="2706:2780" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="2790:3018" ph="/// Updates selected User ... " />
-            <marker date="1544528749650" expanded="true" signature="3112:3301" ph="{...}" />
-            <marker date="1544528749650" expanded="true" signature="3311:3458" ph="/// Deletes User ... " />
-            <marker date="1544528749650" expanded="true" signature="3536:3604" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/appsettings.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -944,22 +856,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/TokenService.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <marker date="1544534633755" expanded="true" signature="6:122" ph="..." />
-            <marker date="1544534633755" expanded="true" signature="176:2277" ph="{...}" />
-            <marker date="1544534633755" expanded="true" signature="224:2275" ph="{...}" />
-            <marker date="1544534633755" expanded="true" signature="424:523" ph="{...}" />
-            <marker date="1544534633755" expanded="true" signature="582:1211" ph="{...}" />
-            <marker date="1544534633755" expanded="true" signature="1276:1752" ph="{...}" />
-            <marker date="1544534633755" expanded="true" signature="1831:2269" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/UllechampContext.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
@@ -970,28 +866,6 @@
             <marker date="1544535291148" expanded="true" signature="162:1644" ph="{...}" />
             <marker date="1544535291148" expanded="true" signature="242:262" ph="{...}" />
             <marker date="1544535291148" expanded="true" signature="338:1519" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Startup.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="58" column="62" selection-start-line="58" selection-start-column="62" selection-end-line="58" selection-end-column="62" />
-          <folding>
-            <marker date="1544531708574" expanded="false" signature="6:692" ph="..." />
-            <marker date="1544531708574" expanded="true" signature="725:3556" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="752:3554" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="895:1299" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="1469:2481" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="1540:1696" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="1713:1784" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="2254:2379" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="2669:3548" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="2738:3056" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="2875:3042" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="3073:3376" ph="{...}" />
-            <marker date="1544531708574" expanded="true" signature="3161:3331" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1045,29 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/UserService.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="64" column="41" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
-          <folding>
-            <marker date="1544537526695" expanded="false" signature="6:190" ph="..." />
-            <marker date="1544537526695" expanded="true" signature="244:3160" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="290:3158" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="402:456" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="499:566" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="607:681" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="718:781" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="817:878" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="953:2192" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="992:2182" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="2243:2320" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="2359:2422" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="2480:2911" ph="{...}" />
-            <marker date="1544537526695" expanded="true" signature="2984:3152" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/IUserService.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -1102,18 +953,199 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/UllechampTest/ServiceTests/UserServiceTest.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1635">
+          <folding>
+            <marker date="1544535468114" expanded="false" signature="6:258" ph="..." />
+            <marker date="1544535468114" expanded="true" signature="283:4479" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="318:4477" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="396:687" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="737:1538" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="796:1527" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="825:1137" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="1184:1513" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="1612:2272" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="1799:2140" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="2339:3008" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="2538:2879" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="3075:3750" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="3274:3615" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="3828:4106" ph="{...}" />
+            <marker date="1544535468114" expanded="true" signature="4206:4471" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UllechampTest/ServiceTests/CalenderServiceTest.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding>
+            <marker date="1544528749651" expanded="false" signature="6:367" ph="..." />
+            <marker date="1544528749651" expanded="true" signature="392:2699" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="431:2697" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="504:767" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="833:1008" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="900:997" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="1018:1090" ph="/// Checks setup is working ... " />
+            <marker date="1544528749651" expanded="true" signature="1146:1376" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="1446:1853" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="1636:1728" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="1924:2319" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="2114:2206" ph="{...}" />
+            <marker date="1544528749651" expanded="true" signature="2403:2690" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/CalenderItemsController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+          <folding>
+            <marker date="1544528749649" expanded="false" signature="6:143" ph="..." />
+            <marker date="1544528749649" expanded="true" signature="188:1346" ph="{...}" />
+            <marker date="1544528749649" expanded="true" signature="296:1344" ph="{...}" />
+            <marker date="1544528749649" expanded="true" signature="379:505" ph="/// Initialize CalenderService ... " />
+            <marker date="1544528749649" expanded="true" signature="578:646" ph="{...}" />
+            <marker date="1544528749649" expanded="true" signature="664:782" ph="/// Get all calenderItems ... " />
+            <marker date="1544528749649" expanded="true" signature="861:937" ph="{...}" />
+            <marker date="1544528749649" expanded="true" signature="947:1144" ph="/// Creates a calenderItem ... " />
+            <marker date="1544528749649" expanded="true" signature="1248:1338" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/UserService.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="64" column="41" selection-start-line="64" selection-start-column="41" selection-end-line="64" selection-end-column="41" />
+          <folding>
+            <marker date="1544537526695" expanded="false" signature="6:190" ph="..." />
+            <marker date="1544537526695" expanded="true" signature="244:3160" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="290:3158" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="402:456" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="499:566" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="607:681" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="718:781" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="817:878" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="953:2192" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="992:2182" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="2243:2320" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="2359:2422" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="2480:2911" ph="{...}" />
+            <marker date="1544537526695" expanded="true" signature="2984:3152" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Startup.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+          <folding>
+            <marker date="1544531708574" expanded="false" signature="6:692" ph="..." />
+            <marker date="1544531708574" expanded="true" signature="725:3556" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="752:3554" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="895:1299" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="1469:2481" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="1540:1696" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="1713:1784" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="2254:2379" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="2669:3548" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="2738:3056" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="2875:3042" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="3073:3376" ph="{...}" />
+            <marker date="1544531708574" expanded="true" signature="3161:3331" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/appsettings.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="59" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Infrastructure.Data/Managers/TokenManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+          <folding>
+            <marker date="1544547826237" expanded="true" signature="6:206" ph="..." />
+            <marker date="1544547826237" expanded="true" signature="260:1633" ph="{...}" />
+            <marker date="1544547826237" expanded="true" signature="292:1631" ph="{...}" />
+            <marker date="1544547826237" expanded="true" signature="515:645" ph="{...}" />
+            <marker date="1544547826237" expanded="true" signature="724:1625" ph="{...}" />
+            <marker date="1544547826237" expanded="true" signature="788:1097" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.Core/ApplicationService/Impl/TokenService.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="40" column="53" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="53" />
+          <folding>
+            <marker date="1544534633755" expanded="false" signature="6:122" ph="..." />
+            <marker date="1544534633755" expanded="true" signature="176:2277" ph="{...}" />
+            <marker date="1544534633755" expanded="true" signature="224:2275" ph="{...}" />
+            <marker date="1544534633755" expanded="true" signature="424:523" ph="{...}" />
+            <marker date="1544534633755" expanded="true" signature="582:1211" ph="{...}" />
+            <marker date="1544534633755" expanded="true" signature="1276:1752" ph="{...}" />
+            <marker date="1544534633755" expanded="true" signature="1831:2269" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/TokenController.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
+        <state relative-caret-position="790">
+          <caret line="68" column="65" selection-start-line="68" selection-start-column="65" selection-end-line="68" selection-end-column="65" />
           <folding>
-            <marker date="1544538488925" expanded="true" signature="6:261" ph="..." />
-            <marker date="1544538488925" expanded="true" signature="306:1900" ph="{...}" />
-            <marker date="1544538488925" expanded="true" signature="406:1898" ph="{...}" />
-            <marker date="1544538488925" expanded="true" signature="658:760" ph="{...}" />
-            <marker date="1544538488925" expanded="true" signature="844:1892" ph="{...}" />
-            <marker date="1544538488925" expanded="true" signature="1267:1816" ph="{...}" />
-            <marker date="1544538488925" expanded="true" signature="1524:1751" ph="{...}" />
+            <marker date="1544547859331" expanded="true" signature="6:311" ph="..." />
+            <marker date="1544547859331" expanded="true" signature="356:2562" ph="{...}" />
+            <marker date="1544547859331" expanded="true" signature="456:2560" ph="{...}" />
+            <marker date="1544547859331" expanded="true" signature="761:1057" ph="{...}" />
+            <marker date="1544547859331" expanded="true" signature="1141:2554" ph="{...}" />
+            <marker date="1544547859331" expanded="true" signature="1699:2262" ph="{...}" />
+            <marker date="1544547859331" expanded="true" signature="1956:2183" ph="{...}" />
+            <marker date="1544547859331" expanded="true" signature="2300:2395" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Ullechamp-Api.RestApi/Controllers/LeaderboardController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+          <folding>
+            <marker date="1544549254242" expanded="false" signature="6:199" ph="..." />
+            <marker date="1544549254242" expanded="true" signature="244:3674" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="350:3672" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="425:553" ph="/// Initialize LeaderboardController ... " />
+            <marker date="1544549254242" expanded="true" signature="616:676" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="694:875" ph="/// Gets all Users ... " />
+            <marker date="1544549254242" expanded="true" signature="990:1071" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="1081:1340" ph="/// Gets all users in specific order ... " />
+            <marker date="1544549254242" expanded="true" signature="1460:1551" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="1561:1809" ph="/// Gets list of searched Users ... " />
+            <marker date="1544549254242" expanded="true" signature="1929:2013" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="2023:2198" ph="/// Gets User by id  ... " />
+            <marker date="1544549254242" expanded="true" signature="2270:2511" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="2359:2420" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="2437:2501" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="2521:2688" ph="/// Creates a User ... " />
+            <marker date="1544549254242" expanded="true" signature="2768:2842" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="2852:3080" ph="/// Updates selected User ... " />
+            <marker date="1544549254242" expanded="true" signature="3174:3363" ph="{...}" />
+            <marker date="1544549254242" expanded="true" signature="3373:3520" ph="/// Deletes User ... " />
+            <marker date="1544549254242" expanded="true" signature="3598:3666" ph="{...}" />
           </folding>
         </state>
       </provider>

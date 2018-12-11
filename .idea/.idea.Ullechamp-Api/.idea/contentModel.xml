@@ -59,6 +59,9 @@
       <e p="Ullechamp-Api.Infrastructure.Data" t="IncludeRecursive">
         <e p="Bin" t="ExcludeRecursive" />
         <e p="DBInitializer.cs" t="Include" />
+        <e p="Managers" t="Include">
+          <e p="TokenManager.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp2.1" t="Include">
@@ -94,7 +97,9 @@
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />
-          <e p="PublishProfiles" t="Include" />
+          <e p="PublishProfiles" t="Include">
+            <e p="ullechamp - Web Deploy.pubxml" t="Include" />
+          </e>
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="Ullechamp-Api.RestApi.csproj" t="IncludeRecursive" />

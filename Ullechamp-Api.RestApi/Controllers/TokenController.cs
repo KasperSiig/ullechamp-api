@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using Ullechamp_Api.Core.ApplicationService;
 using Ullechamp_Api.Core.Entity;
+using Ullechamp_Api.Infrastructure.Data.Managers;
 
 namespace Ullechamp_Api.RestApi.Controllers
 {
@@ -15,6 +16,7 @@ namespace Ullechamp_Api.RestApi.Controllers
     {
         private readonly ITokenService _tokenService;
         private readonly IUserService _userService;
+        private readonly TokenManager _tokenManager;
 
         public TokenController(IConfiguration configuration,
             ITokenService tokenService,
@@ -22,6 +24,10 @@ namespace Ullechamp_Api.RestApi.Controllers
         {
             _tokenService = tokenService;
             _userService = userService;
+            _tokenManager = new TokenManager(
+                configuration["JwtKey"],
+                double.Parse(configuration["JwtExpireDays"]),
+                configuration["JwtIssuer"]);
         }
 
         [HttpGet]
@@ -31,10 +37,14 @@ namespace Ullechamp_Api.RestApi.Controllers
             var accessToken = tokens.GetValue("access_token").ToString();
             var userId = await _tokenService.GetUserId(accessToken);
 
+            // TODO: Implement tryparse
             var userExists =
                 _userService.GetUserByTwitchId(int.Parse(userId)) != null;
 
             var user = await _tokenService.GetUser(userId, accessToken);
+            
+            //TODO: Implement 'out' variable
+            User userCreated = null;
             if (!userExists)
             {
                 var twitchName = user.GetValue("data").First.Value<string>("display_name");
@@ -47,9 +57,16 @@ namespace Ullechamp_Api.RestApi.Controllers
                     TwitchId = int.Parse(userId),
                     ImageUrl = imageUrl
                 };
-                _userService.CreateUser(newUser);
+                userCreated = _userService.CreateUser(newUser);
             }
-            return Redirect("http://localhost:4200/leaderboard");
+
+            if (userCreated == null)
+            {
+                _userService.GetUserByTwitchId(int.Parse(userId));
+            }
+
+            var jwt = _tokenManager.GenerateJwtToken(userCreated, accessToken);
+            return Redirect("http://localhost:4200/?token=" + jwt);
         }
     }
 }
