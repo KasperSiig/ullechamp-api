@@ -16,7 +16,7 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         {
             _userRepo = userRepo;
         }
-        
+
         public User CreateUser(User user)
         {
             return _userRepo.CreateUser(user);
@@ -35,6 +35,40 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         public User Delete(int id)
         {
             return _userRepo.Delete(id);
+        }
+
+        public List<User> GetFilteredStats(Filter filter, string sorting)
+        {
+            switch (sorting)
+            {
+                case "Wins":
+                    return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Wins).ToList();
+                    break;
+                case "Losses":
+                    return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Losses).ToList();
+                    break;
+                case "Kills":
+                   return  _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Kills).ToList();
+                    break;
+                case "Deaths":
+                    return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Deaths).ToList();
+                    break;
+                case "Assists":
+                    return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Assists).ToList();
+                    break;
+                case "Kda":
+                    return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Kda).ToList();
+                    break;
+                case "W/L":
+                    return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.WinLoss).ToList();
+                    break;
+                case "Point":
+                    return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Point).ToList();
+                    break;
+                default:
+                    return _userRepo.ReadAllFiltered(filter).ToList();
+                    break;
+            }
         }
 
         public User Update(User user)
@@ -57,7 +91,7 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         {
             if (searchQuery == null)
                 GetAllUsers();
-            
+
             return _userRepo.ReadSearchFiltered(filter, searchQuery).ToList();
         }
     }
