@@ -55,6 +55,10 @@ namespace Ullechamp_Api.RestApi
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<ITokenService, TokenService>();
+            
+            services.AddHttpClient();
             
             services.AddMvc().AddJsonOptions(options =>
             {
