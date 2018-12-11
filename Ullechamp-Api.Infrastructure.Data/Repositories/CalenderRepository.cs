@@ -15,14 +15,14 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
         
         public CalenderItem CreateCalender(CalenderItem calenderItem)
         {
-            var calSaved = _ctx.Calenders.Add(calenderItem).Entity;
+            var calSaved = _ctx.CalenderItems.Add(calenderItem).Entity;
             _ctx.SaveChanges();
             return calSaved;
         }
 
         public IEnumerable<CalenderItem> ReadCalender()
         {
-            return _ctx.Calenders;
+            return _ctx.CalenderItems;
         }
     }
 }

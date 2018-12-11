@@ -14,30 +14,34 @@ namespace Ullechamp_Api.Core.ApplicationService
         User CreateUser(User user);
         #endregion
         
-        #region GetAll
+        #region Read
         /// <summary>
         /// Gets all users from the database
         /// </summary>
         /// <returns> A list of all users </returns>
         List<User> GetAllUsers();
-        #endregion
         
-        #region GetById
         /// <summary>
         /// Gets a user by id from the database
         /// </summary>
         /// <param name="id">The id of the user to be read</param>
         /// <returns>The user</returns>
         User GetById(int id);
-        #endregion
-
-        #region Delete
+        
         /// <summary>
-        /// Deletes user by id
+        /// Gets the filtered list of users
         /// </summary>
-        /// <param name="id">Id of user to be deleted</param>
-        /// <returns>The user that has been deleted</returns>
-        User Delete(int id);
+        /// <param name="filter">The filter properties</param>
+        /// <returns>The filtered list of users</returns>
+        List<User> GetFilteredList(Filter filter);
+        
+        /// <summary>
+        /// Searches all Users based on a searchQuery
+        /// </summary>
+        /// <param name="filter">The filter properties</param>
+        /// <param name="searchQuery">Search String</param>
+        /// <returns>A list of filtered Users</returns>
+        List<User> SearchList(Filter filter, string searchQuery);
         #endregion
 
         #region Update
@@ -49,15 +53,17 @@ namespace Ullechamp_Api.Core.ApplicationService
         User Update(User user);
         #endregion
         
-        #region GetFilteredList
+        #region Delete
         /// <summary>
-        /// Gets the filtered list of users
+        /// Deletes user by id
         /// </summary>
-        /// <param name="filter">The filter properties</param>
-        /// <returns>The filtered list of users</returns>
-        List<User> GetFilteredList(Filter filter);
+        /// <param name="id">Id of user to be deleted</param>
+        /// <returns>The user that has been deleted</returns>
+        User Delete(int id);
         #endregion
 
-        List<User> SearchList(Filter filter, string searchQuery);
+       
+        
+        
     }
 }

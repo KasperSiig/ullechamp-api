@@ -8,19 +8,18 @@ namespace Ullechamp_Api.Core.DomainService
     {
         #region Create
         /// <summary>
-        /// Creates calender in database
+        /// Creates CalenderItem in database
         /// </summary>
-        /// <param name="calenderItem"> Calender to be inserted in database</param>
-        /// <returns> Created calender</returns>
+        /// <param name="calenderItem"> CalenderItem to be inserted in database</param>
+        /// <returns> Created CalenderItem</returns>
         CalenderItem CreateCalender(CalenderItem calenderItem);
         #endregion
 
-
-        #region ReadAll
+        #region Read
         /// <summary>
-        /// Reads all calenders from databse
+        /// Reads all CalenderItems from database
         /// </summary>
-        /// <returns> A IEnumerable of all calenders</returns>
+        /// <returns> A IEnumerable of all CalenderItems</returns>
         IEnumerable<CalenderItem> ReadCalender();
         #endregion
         
