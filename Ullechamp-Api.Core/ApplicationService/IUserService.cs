@@ -42,6 +42,14 @@ namespace Ullechamp_Api.Core.ApplicationService
         /// <param name="searchQuery">Search String</param>
         /// <returns>A list of filtered Users</returns>
         List<User> SearchList(Filter filter, string searchQuery);
+        
+        /// <summary>
+        /// Gets all Users in a specific order
+        /// </summary>
+        /// <param name="filter">The filter properties</param>
+        /// <param name="stats">The sorting chosen</param>
+        /// <returns>A list of sorted Users</returns>
+        List<User> GetFilteredStats(Filter filter, string sorting);
         #endregion
 
         #region Update
@@ -62,8 +70,7 @@ namespace Ullechamp_Api.Core.ApplicationService
         User Delete(int id);
         #endregion
 
-       
-        
+
         
     }
 }

@@ -31,7 +31,19 @@ namespace Ullechamp_Api.RestApi.Controllers
         {
             return Ok(_userService.GetFilteredList(filter));
         }
-        
+
+        /// <summary>
+        /// Gets all users in specific order
+        /// </summary>
+        /// <param name="sorting">What to be sorted by</param>
+        /// <param name="filter">The Filter properties</param>
+        /// <returns>List of sorted Users</returns>
+        [HttpGet("stats")]
+        public ActionResult<IEnumerable<User>> Get(string sorting, [FromQuery]Filter filter)
+        {
+            return Ok(_userService.GetFilteredStats(filter, sorting));
+        }
+
         /// <summary>
         /// Gets list of searched Users
         /// </summary>
