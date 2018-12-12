@@ -28,7 +28,7 @@ namespace UllechampTest
             return new List<User>()
             {
                 new User() {Id = 1,
-                Username = "Oliver1992",
+                Twitchname = "Oliver1992",
                 Role = "Standard",
                 Wins = 0,
                 Losses = 5,
@@ -41,7 +41,7 @@ namespace UllechampTest
                 
                 new User() {
                 Id = 2,
-                Username = "Oliver1992",
+                Twitchname = "Oliver1992",
                 Role = "Standard",
                 Wins = 0,
                 Losses = 5,
@@ -63,7 +63,7 @@ namespace UllechampTest
             var user = new User()
             {
                 Id = 1,
-                Username = "Oliver1992",
+                Twitchname = "Oliver1992",
                 Role = "Standard",
                 Wins = 0,
                 Losses = 5,
@@ -89,7 +89,7 @@ namespace UllechampTest
             var user = new User()
             {
                 Id = 1,
-                Username = "Oliver1992",
+                Twitchname = "Oliver1992",
                 Role = "Standard",
                 Wins = 0,
                 Losses = 5,
@@ -115,7 +115,7 @@ namespace UllechampTest
             var user = new User()
             {
                 Id = 1,
-                Username = "Oliver1992",
+                Twitchname = "Oliver1992",
                 Role = "Standard",
                 Wins = 0,
                 Losses = 5,

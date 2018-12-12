@@ -49,6 +49,8 @@ namespace Ullechamp_Api.Core.DomainService
         /// </summary>
         /// <returns>Total of users</returns>
         int Count();
+        
+        User ReadUserByTwitchId(int userId);
         #endregion
 
         #region Update
@@ -68,6 +70,7 @@ namespace Ullechamp_Api.Core.DomainService
         /// <returns>The deleted user</returns>
         User Delete(int id);
         #endregion
+
 
         
     }
