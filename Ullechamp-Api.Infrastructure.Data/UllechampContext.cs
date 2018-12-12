@@ -11,6 +11,41 @@ namespace Ullechamp_Api.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .Property(u => u.Wins)
+                .HasDefaultValue(0);
+            
+            modelBuilder.Entity<User>()
+                .Property(u => u.Losses)
+                .HasDefaultValue(0);
+            
+            modelBuilder.Entity<User>()
+                .Property(u => u.Kills)
+                .HasDefaultValue(0);
+            
+            modelBuilder.Entity<User>()
+                .Property(u => u.Deaths)
+                .HasDefaultValue(0);
+            
+            modelBuilder.Entity<User>()
+                .Property(u => u.Assists)
+                .HasDefaultValue(0);
+            
+            modelBuilder.Entity<User>()
+                .Property(u => u.Kda)
+                .HasDefaultValue(0.0);
+            
+            modelBuilder.Entity<User>()
+                .Property(u => u.WinLoss)
+                .HasDefaultValue(0);
+            
+            modelBuilder.Entity<User>()
+                .Property(u => u.Point)
+                .HasDefaultValue(0);
+            
+            modelBuilder.Entity<User>()
+                .Property(u => u.Rank)
+                .HasDefaultValue(0);
         }
         
         public DbSet<CalenderItem> CalenderItems { get; set; }

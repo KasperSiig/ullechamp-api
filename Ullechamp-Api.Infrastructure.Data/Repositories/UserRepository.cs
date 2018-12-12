@@ -40,6 +40,11 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
             return userDeleted;
         }
 
+        public User ReadUserByTwitchId(int userId)
+        {
+            return _ctx.Users.FirstOrDefault(u => u.TwitchId == userId);
+        }
+
         public User Update(User user)
         {
             var userUpdate = _ctx.Update(user).Entity;
@@ -57,7 +62,7 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
         public IEnumerable<User> ReadSearchFiltered(Filter filter, string search)
         {
             // Find all users matching the search query
-            var searchResult = _ctx.Users.ToList().FindAll(x => x.Username.ToLower()
+            var searchResult = _ctx.Users.ToList().FindAll(x => x.Twitchname.ToLower()
                 .Contains(search.ToLower()));
             
             return ReadFiltered(filter, searchResult);
