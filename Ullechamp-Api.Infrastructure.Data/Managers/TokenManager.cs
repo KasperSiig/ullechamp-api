@@ -38,7 +38,8 @@ namespace Ullechamp_Api.Infrastructure.Data.Managers
 
             var token = new JwtSecurityToken(
                 _jwtIssuer,
-                _jwtIssuer,
+                // TODO: Add valid audience
+                null,
                 claims,
                 expires: expires,
                 signingCredentials: creds
