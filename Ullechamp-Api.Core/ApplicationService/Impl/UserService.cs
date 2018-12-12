@@ -43,32 +43,28 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
             {
                 case "Wins":
                     return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Wins).ToList();
-                    break;
                 case "Losses":
                     return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Losses).ToList();
-                    break;
                 case "Kills":
                    return  _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Kills).ToList();
-                    break;
                 case "Deaths":
                     return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Deaths).ToList();
-                    break;
                 case "Assists":
                     return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Assists).ToList();
-                    break;
                 case "Kda":
                     return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Kda).ToList();
-                    break;
                 case "W/L":
                     return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.WinLoss).ToList();
-                    break;
                 case "Point":
                     return _userRepo.ReadAllFiltered(filter).OrderByDescending(x => x.Point).ToList();
-                    break;
                 default:
                     return _userRepo.ReadAllFiltered(filter).ToList();
-                    break;
             }
+        }
+
+        public User GetUserByTwitchId(int userId)
+        {
+            return _userRepo.ReadUserByTwitchId(userId);
         }
 
         public User Update(User user)

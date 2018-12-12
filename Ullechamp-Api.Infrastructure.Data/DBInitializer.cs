@@ -18,7 +18,7 @@ namespace Ullechamp_Api.Infrastructure.Data
 
             var oliver = ctx.Users.Add(new User()
             {
-                Username = "Oliver1992",
+                Twitchname = "Oliver1992",
                 Role = "Standard",
                 Wins = 0,
                 Losses = 5,
@@ -32,7 +32,7 @@ namespace Ullechamp_Api.Infrastructure.Data
 
             var jesper = ctx.Users.Add(new User()
             {
-                Username = "Jesper1992",
+                Twitchname = "Jesper1992",
                 Role = "Standard",
                 Wins = 0,
                 Losses = 5,
@@ -46,7 +46,7 @@ namespace Ullechamp_Api.Infrastructure.Data
             
             var kasper = ctx.Users.Add(new User()
             {
-                Username = "Kasper1992",
+                Twitchname = "Kasper1992",
                 Role = "Standard",
                 Wins = 0,
                 Losses = 5,

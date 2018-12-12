@@ -50,6 +50,8 @@ namespace Ullechamp_Api.Core.ApplicationService
         /// <param name="stats">The sorting chosen</param>
         /// <returns>A list of sorted Users</returns>
         List<User> GetFilteredStats(Filter filter, string sorting);
+        
+        User GetUserByTwitchId(int userId);
         #endregion
 
         #region Update
