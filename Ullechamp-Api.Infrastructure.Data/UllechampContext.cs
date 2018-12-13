@@ -51,5 +51,6 @@ namespace Ullechamp_Api.Infrastructure.Data
         public DbSet<CalenderItem> CalenderItems { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Queue> Queues { get; set; }
+        public DbSet<Tournament> Tournaments { get; set; }
     }
 }

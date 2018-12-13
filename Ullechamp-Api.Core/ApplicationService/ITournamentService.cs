@@ -9,5 +9,8 @@ namespace Ullechamp_Api.Core.ApplicationService
         List<User> GetUsersInQueue();
 
         void AddToQueue(string id);
+        void RemoveFromQueue(int id);
+        void AddToCurrent(int dad, int id, int team);
+        List<Tournament> GetUsersInCurrent();
     }
 }
