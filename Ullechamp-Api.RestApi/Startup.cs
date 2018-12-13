@@ -78,6 +78,9 @@ namespace Ullechamp_Api.RestApi
 
             services.AddScoped<ITokenService, TokenService>();
             
+            services.AddScoped<ITournamentRepository, TournamentRepository>();
+            services.AddScoped<ITournamentService, TournamentService>();
+            
             services.AddHttpClient();
             
             services.AddMvc().AddJsonOptions(options =>
