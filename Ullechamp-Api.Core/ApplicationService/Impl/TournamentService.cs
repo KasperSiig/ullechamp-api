@@ -30,9 +30,9 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
             _tournamentRepo.RemoveFromQueue(id);
         }
 
-        public void AddToCurrent(int dad, int id, int team)
+        public void AddToCurrent(int tourId, int id, int team)
         {
-            _tournamentRepo.AddToCurrent(dad, id, team);
+            _tournamentRepo.AddToCurrent(tourId, id, team);
         }
 
         public List<Tournament> GetUsersInCurrent()
