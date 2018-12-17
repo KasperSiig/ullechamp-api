@@ -20,14 +20,14 @@ namespace Ullechamp_Api.Infrastructure.Data
             {
                 Twitchname = "Oliver1992",
                 Role = "Standard",
-                Wins = 0,
-                Losses = 5,
-                Kills = 2,
-                Deaths = 55,
-                Assists = 1,
-                Kda = 1.1,
-                WinLoss = 100,
-                Point = 20
+                Wins = 26,
+                Losses = 14,
+                Kills = 0,
+                Deaths = 0,
+                Assists = 0,
+                Kda = 0,
+                WinLoss = 0,
+                Point = 0
             }).Entity;
 
             var jesper = ctx.Users.Add(new User()
@@ -35,13 +35,13 @@ namespace Ullechamp_Api.Infrastructure.Data
                 Twitchname = "Jesper1992",
                 Role = "Standard",
                 Wins = 0,
-                Losses = 5,
-                Kills = 46,
-                Deaths = 55,
-                Assists = 1,
-                Kda = 1.1,
-                WinLoss = 100,
-                Point = 50
+                Losses = 17,
+                Kills = 0,
+                Deaths = 0,
+                Assists = 0,
+                Kda = 0,
+                WinLoss = 0,
+                Point = 0
             }).Entity;
             
             var kasper = ctx.Users.Add(new User()
@@ -49,13 +49,41 @@ namespace Ullechamp_Api.Infrastructure.Data
                 Twitchname = "Kasper1992",
                 Role = "Standard",
                 Wins = 0,
-                Losses = 5,
-                Kills = 8,
-                Deaths = 55,
-                Assists = 1,
-                Kda = 1.1,
-                WinLoss = 100,
-                Point = 1
+                Losses = 16,
+                Kills = 0,
+                Deaths = 0,
+                Assists = 0,
+                Kda = 0,
+                WinLoss = 0,
+                Point = 0
+            }).Entity;
+            
+            var kasper2 = ctx.Users.Add(new User()
+            {
+                Twitchname = "Kasper1992",
+                Role = "Standard",
+                Wins = 0,
+                Losses = 6,
+                Kills = 0,
+                Deaths = 0,
+                Assists = 0,
+                Kda = 0,
+                WinLoss = 0,
+                Point = 0
+            }).Entity;
+            
+            var kasper3 = ctx.Users.Add(new User()
+            {
+                Twitchname = "Kasper1992",
+                Role = "Standard",
+                Wins = 0,
+                Losses = 18,
+                Kills = 0,
+                Deaths = 0,
+                Assists = 0,
+                Kda = 0,
+                WinLoss = 0,
+                Point = 0
             }).Entity;
             ctx.SaveChanges();
         }

@@ -12,5 +12,6 @@ namespace Ullechamp_Api.Core.DomainService
         void RemoveFromQueue(int id);
         void AddToCurrent(int tourId, int id, int team);
         IEnumerable<Tournament> GetUsersInCurrent();
+        IEnumerable<User> UpdateUser(List<User> userList);
     }
 }

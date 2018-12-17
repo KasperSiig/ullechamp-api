@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
 using Ullechamp_Api.Core.DomainService;
 using Ullechamp_Api.Core.Entity;
+using Queue = Ullechamp_Api.Core.Entity.Queue;
 
 namespace Ullechamp_Api.Infrastructure.Data.Repositories
 {
@@ -20,7 +22,7 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
         
         public IEnumerable<User> ReadUsersInQueue()
         {
-            var users = _ctx.Queues.Select(q => q.User);
+            var users = _ctx.Queues.OrderBy(t => t.QueueTime).Select(q => q.User);
             return users;
         }
 
@@ -74,6 +76,34 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
             }
             
             return current;
+        }
+
+        public IEnumerable<User> UpdateUser(List<User> userList)
+        {
+            List<User> updatedUsers = new List<User>();
+            foreach (var user in userList)
+            {
+                var updateUser = _ctx.Update(user).Entity;
+                updatedUsers.Add(user);
+            }
+
+            _ctx.SaveChanges();
+            UpdateRank();
+            return updatedUsers;
+        }
+        
+        private void UpdateRank()
+        {
+            var counter = 1;
+            var allUsers = _ctx.Users.OrderByDescending(x => x.Point);
+            // Resets rank for everyone
+            foreach (var oneUser in allUsers)
+            {
+                oneUser.Rank = counter++;
+                // Notifies the context that oneUser has been modified
+                _ctx.Attach(oneUser).State = EntityState.Modified;
+            }
+            _ctx.SaveChanges();
         }
     }
 }
