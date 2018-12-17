@@ -71,7 +71,8 @@ namespace Ullechamp_Api.RestApi.Controllers
             var id = tournamentDto.User.Id;
             var team = tournamentDto.Team;
             var tourList = _tournamentService.GetUsersInCurrent().OrderBy(t => t.TournamentId);
-            var tourId = tourList.First().TournamentId;
+            var tourId = 1;
+            //var tourId = tourList.First().TournamentId;
             tourId++;
             _tournamentService.AddToCurrent(tourId, id, team);
             _tournamentService.RemoveFromQueue(id);
