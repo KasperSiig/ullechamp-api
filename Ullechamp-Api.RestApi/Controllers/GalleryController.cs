@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
@@ -29,17 +30,26 @@ namespace Ullechamp_Api.RestApi.Controllers
         {
             if (file != null)
             {
-                var fileName = Path.Combine(_he.WebRootPath, Path.GetFileName(file.FileName));
+                var fileName = Path.Combine(_he.WebRootPath + "/images", Path.GetFileName(file.FileName));
+                
                 using (var stream = new FileStream(fileName, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
 
-                Console.WriteLine("Pic URL: " + fileName);
-                _galleryService.CreatePhotoURL(fileName);
+                
+                
+                _galleryService.CreatePhotoURL(file.FileName);
             }
 
             return Ok();
+        }
+        
+        // Get
+        [HttpGet]
+        public ActionResult<Gallery> Get()
+        {
+            return Ok(_galleryService.GetPhotos());
         }
     }
 }

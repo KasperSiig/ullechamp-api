@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Ullechamp_Api.Core.DomainService;
 using Ullechamp_Api.Core.Entity;
 
@@ -21,6 +23,12 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
                 Time = now
             });
             _ctx.SaveChanges();
+        }
+
+        public IEnumerable<Gallery> ReadPhotos()
+        {
+            var photos = _ctx.Galleries.OrderByDescending(p => p.Time);
+            return photos;
         }
     }
 }

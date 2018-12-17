@@ -118,6 +118,7 @@ namespace Ullechamp_Api.RestApi
                 app.UseHsts();
             }
 
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
