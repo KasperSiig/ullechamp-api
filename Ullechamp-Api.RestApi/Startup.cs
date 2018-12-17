@@ -80,6 +80,9 @@ namespace Ullechamp_Api.RestApi
             
             services.AddScoped<ITournamentRepository, TournamentRepository>();
             services.AddScoped<ITournamentService, TournamentService>();
+
+            services.AddScoped<IGalleryRepository, GalleryRepository>();
+            services.AddScoped<IGalleryService, GalleryService>();
             
             services.AddHttpClient();
             
