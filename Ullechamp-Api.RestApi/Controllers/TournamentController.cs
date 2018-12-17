@@ -19,11 +19,13 @@ namespace Ullechamp_Api.RestApi.Controllers
     public class TournamentController : ControllerBase
     {
         private readonly ITournamentService _tournamentService;
+        private readonly IUserService _userService;
         private readonly IConfiguration _conf;
         
-        public TournamentController(ITournamentService tournamentService, IConfiguration conf)
+        public TournamentController(ITournamentService tournamentService, IUserService userService, IConfiguration conf)
         {
             _tournamentService = tournamentService;
+            _userService = userService;
             _conf = conf;
         }
         
@@ -79,12 +81,54 @@ namespace Ullechamp_Api.RestApi.Controllers
             return Ok();
         }
         
-        /*[HttpPut("Current")]
-        public ActionResult<Tournament> Put([FromBody] TournamentDTO tournamentDto)
+        [HttpPut("Winners")]
+        public ActionResult<IEnumerable<UserDTO>> Put([FromBody] UserDTO userDto)
         {
-            var 
-        }*/
-        
+            List<User> updatedUser = new List<User>(); 
+            
+            foreach (var user in userDto.User)
+            {
+                var id = user.Id;
+                var oldUser = _userService.GetById(id);
+                var userKills = oldUser.Kills + user.Kills;
+                var userDeaths = oldUser.Deaths + user.Deaths;
+                var userAssists = oldUser.Assists + user.Assists;
+                var userWins = oldUser.Wins + user.Wins;
+                oldUser.Kills = userKills;
+                oldUser.Deaths = userDeaths;
+                oldUser.Assists = userAssists;
+                oldUser.Wins = userWins;
+                updatedUser.Add(oldUser);
+            }
+            
+            
+
+            return Ok(_tournamentService.UpdateUser(updatedUser));
+        }
+
+        [HttpPut("Losers")]
+        public ActionResult<IEnumerable<UserDTO>> PutLosers([FromBody] UserDTO userDto)
+        {
+            List<User> updatedUser = new List<User>();
+
+            foreach (var user in userDto.User)
+            {
+                var id = user.Id;
+                var oldUser = _userService.GetById(id);
+                var userKills = oldUser.Kills + user.Kills;
+                var userDeaths = oldUser.Deaths + user.Deaths;
+                var userAssists = oldUser.Assists + user.Assists;
+                var userLosses = oldUser.Losses + user.Losses;
+                oldUser.Kills = userKills;
+                oldUser.Deaths = userDeaths;
+                oldUser.Assists = userAssists;
+                oldUser.Losses = userLosses;
+                updatedUser.Add(oldUser);
+            }
+
+            return Ok(_tournamentService.UpdateUser(updatedUser));
+        }
+
         [HttpDelete("Queue/{id}")]
         public ActionResult Delete(int id)
         {
