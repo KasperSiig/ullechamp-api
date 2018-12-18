@@ -1,3 +1,5 @@
+using System;
+
 namespace Ullechamp_Api.Core.Entity
 {
     public class Tournament
@@ -7,5 +9,6 @@ namespace Ullechamp_Api.Core.Entity
         public User User { get; set; }
         public int State { get; set; }
         public int Team { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }

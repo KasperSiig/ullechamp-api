@@ -10,8 +10,9 @@ namespace Ullechamp_Api.Core.DomainService
         
         void AddToQueue(string id, DateTime now);
         void RemoveFromQueue(int id);
-        void AddToCurrent(int tourId, int id, int team);
+        void AddToCurrent(int id, int team, DateTime time, int tourId);
         IEnumerable<Tournament> GetUsersInCurrent();
         IEnumerable<User> UpdateUser(List<User> userList);
+        IEnumerable<Tournament> ReadAllTournaments();
     }
 }

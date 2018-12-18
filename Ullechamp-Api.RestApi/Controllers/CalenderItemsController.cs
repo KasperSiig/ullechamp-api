@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ullechamp_Api.Core.ApplicationService;
 using Ullechamp_Api.Core.Entity;
@@ -35,6 +36,7 @@ namespace Ullechamp_Api.RestApi.Controllers
         /// </summary>
         /// <param name="calenderItem">CalenderItem to be created</param>
         /// <returns>Created CalenderItem</returns>
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult<CalenderItem> Post([FromBody] CalenderItem calenderItem)
         {
