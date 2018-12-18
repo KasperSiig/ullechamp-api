@@ -33,17 +33,17 @@ namespace Ullechamp_Api.RestApi.Controllers
         [HttpGet]
         public async Task<ActionResult<string>> Get(string code)
         {
+            int id;
             var tokens = await _tokenService.GetTokens(code);
             var accessToken = tokens.GetValue("access_token").ToString();
             var userId = await _tokenService.GetUserId(accessToken);
-
-            // TODO: Implement tryparse
+            var test = Int32.TryParse(userId, out id);
+            
             var userExists =
-                _userService.GetUserByTwitchId(int.Parse(userId)) != null;
+                _userService.GetUserByTwitchId(id) != null;
 
             var user = await _tokenService.GetUser(userId, accessToken);
             
-            //TODO: Implement 'out' variable
             User userCreated = null;
             if (!userExists)
             {

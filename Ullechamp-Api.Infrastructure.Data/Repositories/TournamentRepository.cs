@@ -12,14 +12,13 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
 {
     public class TournamentRepository : ITournamentRepository
     {
-        
         private readonly UllechampContext _ctx;
-        
+
         public TournamentRepository(UllechampContext ctx)
         {
             _ctx = ctx;
         }
-        
+
         public IEnumerable<User> ReadUsersInQueue()
         {
             var users = _ctx.Queues.OrderBy(t => t.QueueTime).Select(q => q.User);
@@ -29,7 +28,7 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
         public void AddToQueue(string id, DateTime now)
         {
             var users = _ctx.Queues;
-            
+
             var userId = users.FirstOrDefault(q => q.User.Id == int.Parse(id));
             if (userId != null) return;
             var queue = new Queue()
@@ -48,14 +47,15 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
             _ctx.SaveChanges();
         }
 
-        public void AddToCurrent(int tourId, int id, int team)
+        public void AddToCurrent(int id, int team, DateTime time, int tourId)
         {
             var current = new Tournament()
             {
                 TournamentId = tourId,
                 User = new User() {Id = id},
                 State = -1,
-                Team = team
+                Team = team,
+                DateTime = time
             };
             _ctx.Attach(current.User);
             _ctx.Attach(current).State = EntityState.Added;
@@ -74,7 +74,7 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
                     current.Add(user);
                 }
             }
-            
+
             return current;
         }
 
@@ -91,7 +91,12 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
             UpdateRank();
             return updatedUsers;
         }
-        
+
+        public IEnumerable<Tournament> ReadAllTournaments()
+        {
+            return _ctx.Tournaments;
+        }
+
         private void UpdateRank()
         {
             var counter = 1;
@@ -103,6 +108,7 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
                 // Notifies the context that oneUser has been modified
                 _ctx.Attach(oneUser).State = EntityState.Modified;
             }
+
             _ctx.SaveChanges();
         }
     }

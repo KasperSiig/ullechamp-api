@@ -32,9 +32,18 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
             _tournamentRepo.RemoveFromQueue(id);
         }
 
-        public void AddToCurrent(int tourId, int id, int team)
+        public void AddToCurrent(int userId, int team)
         {
-            _tournamentRepo.AddToCurrent(tourId, id, team);
+            var time = DateTime.Now;
+            var firstTour = _tournamentRepo.ReadAllTournaments().OrderByDescending(t => t.TournamentId).FirstOrDefault();
+            int tourId = firstTour == null ? 1 : firstTour.TournamentId++;
+            var check = _tournamentRepo.ReadAllTournaments().FirstOrDefault(t => t.State == -1);
+            if (check != null)
+            {
+                Console.WriteLine("hello fuck you");
+                time = check.DateTime;
+            }
+            _tournamentRepo.AddToCurrent(userId, team, time, tourId);
         }
 
         public List<Tournament> GetUsersInCurrent()
