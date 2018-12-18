@@ -35,13 +35,13 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         public void AddToCurrent(int userId, int team)
         {
             var time = DateTime.Now;
-            var firstTour = _tournamentRepo.ReadAllTournaments().OrderByDescending(t => t.TournamentId).FirstOrDefault();
+            var firstTour = _tournamentRepo.ReadAllTournaments().OrderByDescending(t => t.TournamentId).First();
             int tourId = firstTour == null ? 1 : firstTour.TournamentId++;
             var check = _tournamentRepo.ReadAllTournaments().FirstOrDefault(t => t.State == -1);
             if (check != null)
             {
-                Console.WriteLine("hello fuck you");
                 time = check.DateTime;
+                tourId = check.TournamentId;
             }
             _tournamentRepo.AddToCurrent(userId, team, time, tourId);
         }
@@ -75,6 +75,11 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
             }
 
             return _tournamentRepo.UpdateUser(userList).ToList();
+        }
+
+        public void UpdateState()
+        {
+            _tournamentRepo.UpdateTournament();
         }
     }
 }

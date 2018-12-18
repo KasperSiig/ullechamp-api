@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -139,7 +140,16 @@ namespace Ullechamp_Api.RestApi.Controllers
                 updatedUser.Add(oldUser);
             }
 
+
             return Ok(_tournamentService.UpdateUser(updatedUser));
+        }
+        
+        [Authorize(Roles = "Admin")]
+        [HttpPut("EndGame")]
+        public ActionResult EndGamePut()
+        {
+            _tournamentService.UpdateState();
+            return Ok();
         }
 
         [Authorize(Roles = "Standard, Admin")]

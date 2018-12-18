@@ -97,6 +97,20 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
             return _ctx.Tournaments;
         }
 
+        public IEnumerable<User> ReadAllUsers()
+        {
+            return _ctx.Users;
+        }
+
+        public void UpdateTournament()
+        {
+            _ctx.Tournaments
+                .Where(t => t.State == -1)
+                .ToList()
+                .ForEach(t => t.State = 0);
+            _ctx.SaveChanges();
+        }
+
         private void UpdateRank()
         {
             var counter = 1;
