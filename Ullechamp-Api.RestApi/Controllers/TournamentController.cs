@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.UserSecrets;
@@ -54,7 +55,7 @@ namespace Ullechamp_Api.RestApi.Controllers
             return Ok(list2);
         }
 
-        
+        [Authorize(Roles = "Standard, Admin")]
         [HttpPost("Queue")]
         public ActionResult<JObject> Post([FromBody]JObject jObject)
         {
@@ -66,7 +67,8 @@ namespace Ullechamp_Api.RestApi.Controllers
             
             return Ok(id);
         }
-
+        
+        [Authorize(Roles = "Admin")]
         [HttpPost("Current")]
         public ActionResult<Tournament> Post([FromBody] TournamentDTO tournamentDto)
         {
@@ -81,6 +83,7 @@ namespace Ullechamp_Api.RestApi.Controllers
             return Ok();
         }
         
+        [Authorize(Roles = "Admin")]
         [HttpPut("Winners")]
         public ActionResult<IEnumerable<UserDTO>> Put([FromBody] UserDTO userDto)
         {
@@ -105,7 +108,8 @@ namespace Ullechamp_Api.RestApi.Controllers
 
             return Ok(_tournamentService.UpdateUser(updatedUser));
         }
-
+        
+        [Authorize(Roles = "Admin")]
         [HttpPut("Losers")]
         public ActionResult<IEnumerable<UserDTO>> PutLosers([FromBody] UserDTO userDto)
         {
@@ -128,7 +132,8 @@ namespace Ullechamp_Api.RestApi.Controllers
 
             return Ok(_tournamentService.UpdateUser(updatedUser));
         }
-
+        
+        [Authorize(Roles = "Standard, Admin")]
         [HttpDelete("Queue/{id}")]
         public ActionResult Delete(int id)
         {

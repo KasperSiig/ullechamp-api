@@ -44,7 +44,9 @@ namespace Ullechamp_Api.RestApi
             }
             else
             {
-                // TODO: ADD REAL DATABASE
+                services.AddDbContext<UllechampContext>(
+                    opt => opt
+                        .UseSqlServer(_conf.GetConnectionString("defaultConnection")));
             }
             
             services

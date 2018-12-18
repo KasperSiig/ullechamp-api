@@ -62,7 +62,7 @@ namespace Ullechamp_Api.RestApi.Controllers
 
             if (userCreated == null)
             {
-                _userService.GetUserByTwitchId(int.Parse(userId));
+                userCreated = _userService.GetUserByTwitchId(int.Parse(userId));
             }
 
             var jwt = _tokenManager.GenerateJwtToken(userCreated, accessToken);

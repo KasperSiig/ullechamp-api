@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,7 @@ namespace Ullechamp_Api.RestApi.Controllers
         }
         
         // Post
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Post(IFormFile file)
         {
