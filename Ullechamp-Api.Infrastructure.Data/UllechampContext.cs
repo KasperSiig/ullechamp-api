@@ -52,5 +52,6 @@ namespace Ullechamp_Api.Infrastructure.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Queue> Queues { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
+        public DbSet<Gallery> Galleries { get; set; }
     }
 }

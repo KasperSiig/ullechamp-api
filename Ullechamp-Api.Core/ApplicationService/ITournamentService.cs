@@ -10,7 +10,7 @@ namespace Ullechamp_Api.Core.ApplicationService
 
         void AddToQueue(string id);
         void RemoveFromQueue(int id);
-        void AddToCurrent(int tourId, int id, int team);
+        void AddToCurrent(int userId, int team);
         List<Tournament> GetUsersInCurrent();
         List<User> UpdateUser(List<User> updatedUser);
     }

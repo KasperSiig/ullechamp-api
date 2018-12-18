@@ -44,7 +44,9 @@ namespace Ullechamp_Api.RestApi
             }
             else
             {
-                // TODO: ADD REAL DATABASE
+                services.AddDbContext<UllechampContext>(
+                    opt => opt
+                        .UseSqlServer(_conf.GetConnectionString("defaultConnection")));
             }
             
             services
@@ -80,6 +82,9 @@ namespace Ullechamp_Api.RestApi
             
             services.AddScoped<ITournamentRepository, TournamentRepository>();
             services.AddScoped<ITournamentService, TournamentService>();
+
+            services.AddScoped<IGalleryRepository, GalleryRepository>();
+            services.AddScoped<IGalleryService, GalleryService>();
             
             services.AddHttpClient();
             
@@ -115,6 +120,7 @@ namespace Ullechamp_Api.RestApi
                 app.UseHsts();
             }
 
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();

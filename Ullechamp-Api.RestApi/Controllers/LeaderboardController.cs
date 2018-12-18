@@ -93,6 +93,7 @@ namespace Ullechamp_Api.RestApi.Controllers
         /// <param name="id">Id of the User</param>
         /// <param name="user">Properties of the User</param>
         /// <returns>Updated User</returns>
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public ActionResult<User> Put(int id, [FromBody] User user)
         {
@@ -107,6 +108,7 @@ namespace Ullechamp_Api.RestApi.Controllers
         /// </summary>
         /// <param name="id">Id of the User</param>
         /// <returns>Ok</returns>
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public ActionResult<User> Delete(int id)
         {
