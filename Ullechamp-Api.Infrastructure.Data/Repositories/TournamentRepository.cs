@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using Ullechamp_Api.Core.DomainService;
 using Ullechamp_Api.Core.Entity;
 using Queue = Ullechamp_Api.Core.Entity.Queue;
@@ -95,6 +96,41 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
         public IEnumerable<Tournament> ReadAllTournaments()
         {
             return _ctx.Tournaments;
+        }
+
+        public IEnumerable<User> ReadAllUsers()
+        {
+            return _ctx.Users;
+        }
+
+        public void UpdateTournament()
+        {
+            _ctx.Tournaments
+                .Where(t => t.State == -1)
+                .ToList()
+                .ForEach(t => t.State = 0);
+            _ctx.SaveChanges();
+        }
+
+        public IEnumerable<Tournament> ReadPending()
+        {
+            return _ctx.Tournaments.Where(t => t.State == 0);
+        }
+
+        public Tournament ReadPendingById(int id)
+        {
+            return _ctx.Tournaments.FirstOrDefault(t => t.TournamentId == id);
+        }
+
+        public IEnumerable<Tournament> ReadUsersInPending(int id)
+        {
+            return _ctx.Tournaments
+                .Where(t => t.TournamentId == id)
+                .Select(t => new Tournament()
+                {
+                   Team = t.Team,
+                   User = t.User
+                });
         }
 
         private void UpdateRank()

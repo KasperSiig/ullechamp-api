@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.UserSecrets;
@@ -72,7 +74,7 @@ namespace Ullechamp_Api.RestApi.Controllers
             return BadRequest();
         }
 
-        [Authorize(Roles = "Admin, Standard")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("Current")]
         public ActionResult<Tournament> Post([FromBody] TournamentDTO tournamentDto)
         {
@@ -94,6 +96,35 @@ namespace Ullechamp_Api.RestApi.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [HttpPut("current")]
+        public ActionResult PutCurrent([FromBody] List<TournamentDTO> tournamentDtos)
+        {
+            var current = _tournamentService.GetUsersInCurrent().Where(t => t.State.Equals(-1)).ToList();
+            var newList = new List<TournamentDTO>(tournamentDtos);
+            current.ForEach(t =>
+            {
+                newList.ForEach(tn =>
+                {
+                    if (t.User.Id.Equals(tn.User.Id))
+                    {
+                        tournamentDtos.Remove(tn);
+                        _tournamentService.RemoveFromQueue(tn.User.Id); 
+                    }
+                });     
+            });
+            tournamentDtos.ForEach(dto =>
+            {
+                
+                var userId = dto.User.Id;
+                var team = dto.Team;
+            
+                _tournamentService.AddToCurrent(userId, team);
+                _tournamentService.RemoveFromQueue(userId);
+            });
+            return Ok();
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpPut("Winners")]
         public ActionResult<IEnumerable<UserDTO>> Put([FromBody] UserDTO userDto)
         {
@@ -106,7 +137,7 @@ namespace Ullechamp_Api.RestApi.Controllers
                 var userKills = oldUser.Kills + user.Kills;
                 var userDeaths = oldUser.Deaths + user.Deaths;
                 var userAssists = oldUser.Assists + user.Assists;
-                var userWins = oldUser.Wins + user.Wins;
+                var userWins = oldUser.Wins + 1;
                 oldUser.Kills = userKills;
                 oldUser.Deaths = userDeaths;
                 oldUser.Assists = userAssists;
@@ -122,7 +153,7 @@ namespace Ullechamp_Api.RestApi.Controllers
         [HttpPut("Losers")]
         public ActionResult<IEnumerable<UserDTO>> PutLosers([FromBody] UserDTO userDto)
         {
-            List<User> updatedUser = new List<User>();
+            List<User> updatedUsers = new List<User>();
 
             foreach (var user in userDto.User)
             {
@@ -131,23 +162,73 @@ namespace Ullechamp_Api.RestApi.Controllers
                 var userKills = oldUser.Kills + user.Kills;
                 var userDeaths = oldUser.Deaths + user.Deaths;
                 var userAssists = oldUser.Assists + user.Assists;
-                var userLosses = oldUser.Losses + user.Losses;
+                var userLosses = oldUser.Losses + 1;
                 oldUser.Kills = userKills;
                 oldUser.Deaths = userDeaths;
                 oldUser.Assists = userAssists;
                 oldUser.Losses = userLosses;
-                updatedUser.Add(oldUser);
+                updatedUsers.Add(oldUser);
             }
 
-            return Ok(_tournamentService.UpdateUser(updatedUser));
+
+            return Ok(_tournamentService.UpdateUser(updatedUsers));
+        }
+        
+        [Authorize(Roles = "Admin")]
+        [HttpPut("EndGame")]
+        public ActionResult EndGamePut()
+        {
+            _tournamentService.UpdateState();
+            return Ok();
         }
 
-        [Authorize(Roles = "Standard, Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("Queue/{id}")]
         public ActionResult Delete(int id)
         {
             _tournamentService.RemoveFromQueue(id);
             return Ok();
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("pending")]
+        public ActionResult<List<PendingTournamentDTO>> GetPending()
+        {
+            var tournaments = _tournamentService.GetPending();
+            List<PendingTournamentDTO> pending = new List<PendingTournamentDTO>();
+            tournaments.ForEach(tournament =>
+            {
+                pending.Add(new PendingTournamentDTO()
+                {
+                    TournamentId = tournament.TournamentId,
+                    Date = tournament.DateTime
+                });
+            });
+            return Ok(pending);
+        }
+        
+        [Authorize(Roles = "Admin")]
+        [HttpGet("pending/{id}")]
+        public ActionResult<PendingTournamentDTO> GetPendingById(int id)
+        {
+            var tournament = _tournamentService.GetPendingById(id);
+            var users = _tournamentService.GetUsersInPending(tournament.TournamentId);
+            var pending = new PendingTournamentDTO()
+            {
+                TournamentId = tournament.TournamentId,
+                Date = tournament.DateTime,
+                Users = new List<TournamentDTO>()
+            };
+            foreach (var user in users)
+            {
+                pending.Users.Add(new TournamentDTO()
+                {
+                    Team = user.Team,
+                    User = user.User,
+                    TournamentId = tournament.TournamentId
+                });
+            }
+            return Ok(pending);
         }
     }
 }
