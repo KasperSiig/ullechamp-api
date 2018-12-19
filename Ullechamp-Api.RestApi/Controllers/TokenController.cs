@@ -66,7 +66,7 @@ namespace Ullechamp_Api.RestApi.Controllers
             }
 
             var jwt = _tokenManager.GenerateJwtToken(userCreated, accessToken);
-            return Redirect("http://localhost:4200/?token=" + jwt);
+            return Redirect("https://ullechamp.kaspersiig.me/?token=" + jwt);
         }
     }
 }
