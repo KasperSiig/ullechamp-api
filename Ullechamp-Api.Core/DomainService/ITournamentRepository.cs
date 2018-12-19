@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Ullechamp_Api.Core.Entity;
 
 namespace Ullechamp_Api.Core.DomainService
@@ -15,10 +14,5 @@ namespace Ullechamp_Api.Core.DomainService
         IEnumerable<Tournament> GetUsersInCurrent();
         IEnumerable<User> UpdateUser(List<User> userList);
         IEnumerable<Tournament> ReadAllTournaments();
-        IEnumerable<User> ReadAllUsers();
-        void UpdateTournament();
-        IEnumerable<Tournament> ReadPending();
-        Tournament ReadPendingById(int id);
-        IEnumerable<Tournament> ReadUsersInPending(int id);
     }
 }

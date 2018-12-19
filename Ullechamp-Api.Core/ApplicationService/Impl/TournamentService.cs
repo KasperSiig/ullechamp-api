@@ -36,12 +36,12 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         {
             var time = DateTime.Now;
             var firstTour = _tournamentRepo.ReadAllTournaments().OrderByDescending(t => t.TournamentId).FirstOrDefault();
-            int tourId = firstTour == null ? 1 : firstTour.TournamentId + 1;
+            int tourId = firstTour == null ? 1 : firstTour.TournamentId++;
             var check = _tournamentRepo.ReadAllTournaments().FirstOrDefault(t => t.State == -1);
             if (check != null)
             {
+                Console.WriteLine("hello fuck you");
                 time = check.DateTime;
-                tourId = check.TournamentId;
             }
             _tournamentRepo.AddToCurrent(userId, team, time, tourId);
         }
@@ -69,54 +69,12 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
                 var kdaResult = (killDouble + assistDouble) / deathDouble;
                 
                 user.Kda = Math.Round(kdaResult, 1);
-                user.WinLoss = user.Wins.Equals(0) 
-                    ? 0 
-                    : Convert.ToInt32((winDouble / (winDouble + lossDouble)) * 100);
-                
+                user.WinLoss = Convert.ToInt32((winDouble / (winDouble + lossDouble)) * 100);
                 user.Point = Convert.ToInt32(Math.Round(pointResult, 0));
                 userList.Add(user);
             }
 
             return _tournamentRepo.UpdateUser(userList).ToList();
-        }
-
-        public void UpdateState()
-        {
-            _tournamentRepo.UpdateTournament();
-        }
-
-        public List<Tournament> GetPending()
-        {
-            var pending = _tournamentRepo.ReadPending();
-            var rtn = new List<Tournament>();
-            foreach (var tournament in pending)
-            {
-                var id = tournament.TournamentId;
-                var exist = false;
-                foreach (var t in rtn)
-                {
-                    if (t.TournamentId == id)
-                    {
-                        exist = true;
-                    }
-                }
-                if (!exist)
-                {
-                    rtn.Add(tournament);
-                }
-            }
-
-            return rtn;
-        }
-
-        public Tournament GetPendingById(int id)
-        {
-            return _tournamentRepo.ReadPendingById(id);
-        }
-
-        public List<Tournament> GetUsersInPending(int id)
-        {
-            return _tournamentRepo.ReadUsersInPending(id).ToList();
         }
     }
 }

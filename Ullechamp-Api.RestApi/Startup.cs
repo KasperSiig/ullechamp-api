@@ -37,7 +37,7 @@ namespace Ullechamp_Api.RestApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            if (_env.IsDevelopment())
+            if (_env.IsDevelopment() || _env.IsProduction())
             {
                 services.AddDbContext<UllechampContext>(
                     opt => opt.UseSqlite("Data Source=ullechamp.db"));
@@ -101,14 +101,12 @@ namespace Ullechamp_Api.RestApi
         {
             
             app.UseAuthentication();
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
                     var ctx = scope.ServiceProvider.GetService<UllechampContext>();
-                    ctx.Database.EnsureDeleted();
-                    ctx.Database.EnsureCreated();
                     DBInitializer.SeedDB(ctx);
                 }
             }
@@ -124,7 +122,7 @@ namespace Ullechamp_Api.RestApi
 
             app.UseStaticFiles();
             app.UseHttpsRedirection();
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
         }
     }

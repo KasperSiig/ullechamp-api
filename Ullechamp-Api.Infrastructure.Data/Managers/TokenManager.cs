@@ -27,7 +27,7 @@ namespace Ullechamp_Api.Infrastructure.Data.Managers
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("twitchName", user.Twitchname),
-                new Claim("role", user.Role),
+                new Claim(ClaimTypes.Role, user.Role),
                 new Claim("id", user.Id.ToString()),
                 new Claim("accessToken", accessToken)
             };
