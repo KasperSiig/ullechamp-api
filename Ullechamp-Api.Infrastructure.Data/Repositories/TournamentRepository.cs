@@ -31,7 +31,8 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
 
         public void AddToQueue(string id, DateTime now)
         {
-            var queueCheck = _ctx.Queues.FirstOrDefault(q => q.User.Id == int.Parse(id));
+            var queueCheck = _ctx.Queues
+                .FirstOrDefault(q => q.User.Id == int.Parse(id));
             if (queueCheck != null) return;
             var queue = new Queue()
             {
@@ -79,11 +80,14 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
 
         public IEnumerable<User> UpdateUsers(List<User> userList)
         {
-            var updatedUsers = userList.Select(user => _ctx.Update(user).Entity);
-
+            foreach (var user in userList)
+            {
+                _ctx.Update(user);
+            }
+            
             _ctx.SaveChanges();
             UpdateRank();
-            return updatedUsers;
+            return userList;
         }
 
         public IEnumerable<Tournament> ReadAllTournaments()
