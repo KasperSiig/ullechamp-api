@@ -62,7 +62,8 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
         public IEnumerable<User> ReadSearchFiltered(Filter filter, string search)
         {
             // Find all users matching the search query
-            var searchResult = _ctx.Users.ToList().FindAll(x => x.Twitchname.ToLower()
+            var searchResult = _ctx.Users.ToList()
+                .FindAll(x => x.Twitchname.ToLower()
                 .Contains(search.ToLower()));
             
             return ReadFiltered(filter, searchResult);

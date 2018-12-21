@@ -14,6 +14,12 @@ namespace Ullechamp_Api.Infrastructure.Data.Managers
         private readonly double _jwtExpireDays;
         private readonly string _jwtIssuer;
 
+        /// <summary>
+        /// Instantiates TokenManager
+        /// </summary>
+        /// <param name="jwtKey">Secret Key</param>
+        /// <param name="jwtExpireDays">Expiration date for jwt</param>
+        /// <param name="jwtIssuer">Issuer of token</param>
         public TokenManager(string jwtKey, double jwtExpireDays, string jwtIssuer)
         {
             _jwtKey = jwtKey;
@@ -21,13 +27,19 @@ namespace Ullechamp_Api.Infrastructure.Data.Managers
             _jwtIssuer = jwtIssuer;
         }
         
+        /// <summary>
+        /// Generates JWT token
+        /// </summary>
+        /// <param name="user">User to create jwt form</param>
+        /// <param name="accessToken">Access token from Twitch</param>
+        /// <returns></returns>
         public string GenerateJwtToken(User user, string accessToken)
         {
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("twitchName", user.Twitchname),
-                new Claim(ClaimTypes.Role, user.Role),
+                new Claim("role", user.Role),
                 new Claim("id", user.Id.ToString()),
                 new Claim("accessToken", accessToken)
             };
@@ -38,7 +50,6 @@ namespace Ullechamp_Api.Infrastructure.Data.Managers
 
             var token = new JwtSecurityToken(
                 _jwtIssuer,
-                // TODO: Add valid audience
                 null,
                 claims,
                 expires: expires,

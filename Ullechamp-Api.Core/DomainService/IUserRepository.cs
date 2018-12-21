@@ -50,6 +50,11 @@ namespace Ullechamp_Api.Core.DomainService
         /// <returns>Total of users</returns>
         int Count();
         
+        /// <summary>
+        /// Reads a User by their Twitch Id
+        /// </summary>
+        /// <param name="userId">Id of which to read user from</param>
+        /// <returns>User</returns>
         User ReadUserByTwitchId(int userId);
         #endregion
 

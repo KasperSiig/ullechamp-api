@@ -18,6 +18,12 @@ namespace Ullechamp_Api.RestApi.Controllers
         private readonly IUserService _userService;
         private readonly TokenManager _tokenManager;
 
+        /// <summary>
+        /// Instantiates TokenController
+        /// </summary>
+        /// <param name="configuration">Contains information about the API configuration</param>
+        /// <param name="tokenService">Contains business logic for token</param>
+        /// <param name="userService">Contains business logic for user</param>
         public TokenController(IConfiguration configuration,
             ITokenService tokenService,
             IUserService userService)
@@ -30,14 +36,21 @@ namespace Ullechamp_Api.RestApi.Controllers
                 configuration["JwtIssuer"]);
         }
 
+        /// <summary>
+        /// Fetches tokens from Twitch
+        /// </summary>
+        /// <param name="code">Code retrieved when logged in with twitch</param>
+        /// <returns>A 301 Redirect to the frontend</returns>
         [HttpGet]
         public async Task<ActionResult<string>> Get(string code)
         {
-            int id;
+            
             var tokens = await _tokenService.GetTokens(code);
             var accessToken = tokens.GetValue("access_token").ToString();
             var userId = await _tokenService.GetUserId(accessToken);
-            var test = Int32.TryParse(userId, out id);
+            
+            int id;
+            Int32.TryParse(userId, out id);
             
             var userExists =
                 _userService.GetUserByTwitchId(id) != null;
@@ -47,8 +60,10 @@ namespace Ullechamp_Api.RestApi.Controllers
             User userCreated = null;
             if (!userExists)
             {
-                var twitchName = user.GetValue("data").First.Value<string>("display_name");
-                var imageUrl = user.GetValue("data").First.Value<string>("profile_image_url");
+                var data = user.GetValue("data").First;
+                var twitchName = data.Value<string>("display_name");
+                var imageUrl = data.Value<string>("profile_image_url");
+                
                 var newUser = new User
                 {
                     Twitchname = twitchName,
@@ -57,15 +72,15 @@ namespace Ullechamp_Api.RestApi.Controllers
                     TwitchId = int.Parse(userId),
                     ImageUrl = imageUrl
                 };
+                
                 userCreated = _userService.CreateUser(newUser);
             }
 
             if (userCreated == null)
-            {
                 userCreated = _userService.GetUserByTwitchId(int.Parse(userId));
-            }
 
             var jwt = _tokenManager.GenerateJwtToken(userCreated, accessToken);
+            
             return Redirect("http://localhost:4200/?token=" + jwt);
         }
     }

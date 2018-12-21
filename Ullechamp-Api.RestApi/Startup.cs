@@ -37,7 +37,7 @@ namespace Ullechamp_Api.RestApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            if (_env.IsDevelopment() || _env.IsProduction())
+            if (_env.IsDevelopment())
             {
                 services.AddDbContext<UllechampContext>(
                     opt => opt.UseSqlite("Data Source=ullechamp.db"));
@@ -88,9 +88,9 @@ namespace Ullechamp_Api.RestApi
             
             services.AddHttpClient();
             
-            services.AddMvc().AddJsonOptions(options =>
-            {
+            services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.MaxDepth = 3;
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -101,12 +101,14 @@ namespace Ullechamp_Api.RestApi
         {
             
             app.UseAuthentication();
-            if (env.IsDevelopment() || env.IsProduction())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
                     var ctx = scope.ServiceProvider.GetService<UllechampContext>();
+                    ctx.Database.EnsureDeleted();
+                    ctx.Database.EnsureCreated();
                     DBInitializer.SeedDB(ctx);
                 }
             }
@@ -122,7 +124,7 @@ namespace Ullechamp_Api.RestApi
 
             app.UseStaticFiles();
             app.UseHttpsRedirection();
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseMvc();
         }
     }

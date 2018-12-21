@@ -19,39 +19,45 @@ namespace Ullechamp_Api.RestApi.Controllers
         private readonly IHostingEnvironment _he;
         private readonly IGalleryService _galleryService;
 
+        /// <summary>
+        /// Instantiates the Gallery Controller
+        /// </summary>
+        /// <param name="he">Provides information about i.e. wwwroot path</param>
+        /// <param name="galleryService">Contains business logic</param>
         public GalleryController(IHostingEnvironment he, IGalleryService galleryService)
         {
             _he = he;
             _galleryService = galleryService;
         }
         
-        // Post
+        /// <summary>
+        /// Uploads picture to wwwroot/images folder
+        /// </summary>
+        /// <param name="file">File to be uploaded</param>
+        /// <returns>Async task uploading picture</returns>
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Post(IFormFile file)
         {
-            if (file != null)
-            {
-                var fileName = Path.Combine(_he.WebRootPath + "/images", Path.GetFileName(file.FileName));
+            if (file == null) return Ok();
+            var fileName = Path.Combine(_he.WebRootPath + "/images", Path.GetFileName(file.FileName));
                 
-                using (var stream = new FileStream(fileName, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
+            using (var stream = new FileStream(fileName, FileMode.Create))
+                await file.CopyToAsync(stream);             
                 
-                
-                _galleryService.CreatePhotoURL(file.FileName);
-            }
+            _galleryService.CreatePhotoURL(file.FileName);
 
             return Ok();
         }
         
-        // Get
+        /// <summary>
+        /// Gets photos
+        /// </summary>
+        /// <returns>File name of picture</returns>
         [HttpGet]
         public ActionResult<Gallery> Get()
         {
-            return Ok(_galleryService.GetPhotos());
+            return Ok(_galleryService.GetPictures());
         }
     }
 }

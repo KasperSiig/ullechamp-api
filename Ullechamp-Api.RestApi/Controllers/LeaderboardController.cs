@@ -67,13 +67,9 @@ namespace Ullechamp_Api.RestApi.Controllers
         {
             var user = _userService.GetById(id);
             if (user != null)
-            {
                 return Ok(user);
-            }
             else
-            {
                 return NoContent();
-            }
         }
 
         /// <summary>

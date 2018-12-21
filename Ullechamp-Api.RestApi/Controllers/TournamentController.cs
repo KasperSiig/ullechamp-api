@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.UserSecrets;
@@ -20,134 +22,187 @@ namespace Ullechamp_Api.RestApi.Controllers
     public class TournamentController : ControllerBase
     {
         private readonly ITournamentService _tournamentService;
-        private readonly IUserService _userService;
-        private readonly IConfiguration _conf;
 
-        public TournamentController(ITournamentService tournamentService, IUserService userService, IConfiguration conf)
+        /// <summary>
+        /// Instantiates TournamentController
+        /// </summary>
+        /// <param name="tournamentService">Contains business logic for tournaments</param>
+        public TournamentController(ITournamentService tournamentService)
         {
             _tournamentService = tournamentService;
-            _userService = userService;
-            _conf = conf;
         }
 
+        #region Create
 
-        [HttpGet("Queue")]
-        public ActionResult<IEnumerable<User>> Get()
+        /// <summary>
+        /// Adds user to queue
+        /// </summary>
+        /// <param name="jObject">JWT</param>
+        /// <returns>Status Code</returns>
+        [Authorize]
+        [HttpPost("queue")]
+        public ActionResult AddToQueue([FromBody] JObject jObject)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jwtDecoded = handler.ReadJwtToken(jObject.GetValue("jwt").ToString());
+
+            if (jwtDecoded == null) return BadRequest();
+
+            var id = jwtDecoded.Claims.First((p => p.Type == "id")).Value;
+            _tournamentService.AddToQueue(id);
+            return Ok();
+        }
+
+        #endregion
+
+        #region Read
+
+        /// <summary>
+        /// Gets Users in queue
+        /// </summary>
+        /// <returns>List of Users</returns>
+        [HttpGet("queue")]
+        public ActionResult<List<User>> GetQueue()
         {
             return Ok(_tournamentService.GetUsersInQueue());
         }
 
-        [HttpGet("Current")]
+        /// <summary>
+        /// Get Users in current 
+        /// </summary>
+        /// <returns>List of TournamentDTOS</returns>
+        [HttpGet("current")]
         public ActionResult<IEnumerable<TournamentDTO>> GetCurrent()
         {
-            var list = _tournamentService.GetUsersInCurrent();
-            var list2 = new List<TournamentDTO>();
+            var usersInCurrent = _tournamentService.GetUsersInCurrent();
 
-            foreach (var tournament in list)
+            return Ok(usersInCurrent.Select(u => new TournamentDTO()
             {
-                list2.Add(new TournamentDTO()
+                TournamentId = u.TournamentId,
+                User = u.User,
+                Team = u.Team
+            }));
+        }
+
+        /// <summary>
+        /// Gets all tournaments, missing information about kda
+        /// </summary>
+        /// <returns>List of PendingTournamentDTOs</returns>
+        [Authorize(Roles = "Admin")]
+        [HttpGet("pending")]
+        public ActionResult<IEnumerable<PendingTournamentDTO>> GetPending()
+        {
+            var pending = _tournamentService
+                .GetPending()
+                .Select(t => new PendingTournamentDTO()
                 {
-                    TournamentId = tournament.Id,
-                    User = tournament.User,
-                    Team = tournament.Team
+                    TournamentId = t.Id,
+                    Date = t.DateTime
                 });
-            }
-
-            return Ok(list2);
+            return Ok(pending);
         }
-
-        [Authorize(Roles = "Standard, Admin")]
-        [HttpPost("Queue")]
-        public ActionResult<JObject> Post([FromBody] JObject jObject)
+        
+        /// <summary>
+        /// Gets pending tournament by Id
+        /// </summary>
+        /// <param name="id">Id to get tournament from</param>
+        /// <returns>PendingTournamentDTO</returns>
+        [Authorize(Roles = "Admin")]
+        [HttpGet("pending/{id}")]
+        public ActionResult<PendingTournamentDTO> GetPendingById(int id)
         {
-            var handler = new JwtSecurityTokenHandler();
-            var jwtDecoded = handler.ReadJwtToken(jObject.GetValue("jwt").ToString());
-            if (jwtDecoded != null)
+            var tournament = _tournamentService.GetPendingById(id);
+            var tournamentUsers = _tournamentService.GetUsersInPending(id);
+            var pending = new PendingTournamentDTO()
             {
-                var id = jwtDecoded.Claims.FirstOrDefault((p => p.Type == "id")).Value;
-                _tournamentService.AddToQueue(id);
-                return Ok(id);
-            }
-
-            return BadRequest();
+                TournamentId = tournament.Id,
+                Date = tournament.DateTime,
+                Users = tournamentUsers.Select(tu => new TournamentDTO()
+                {
+                    Team = tu.Team,
+                    User = tu.User,
+                    TournamentId = tu.TournamentId
+                }).ToList()
+            };
+            return Ok(pending);
         }
 
-        [Authorize(Roles = "Admin, Standard")]
-        [HttpPost("Current")]
-        public ActionResult<Tournament> Post([FromBody] TournamentDTO tournamentDto)
-        {
-            /*var id = tournamentDto.User.Id;
-            var team = tournamentDto.Team;
-            var tourList = _tournamentService.GetUsersInCurrent().OrderBy(t => t.TournamentId);
-            var tourId = 1;
-            tourId++;
-                _tournamentService.AddToCurrent(tourId, id, team);
-                _tournamentService.RemoveFromQueue(id);*/
-            //var tourId = tourList.First().TournamentId;
-            var userId = tournamentDto.User.Id;
-            var team = tournamentDto.Team;
-            
-            _tournamentService.AddToCurrent(userId, team);
-            _tournamentService.RemoveFromQueue(userId);
+        #endregion
 
+        #region Update
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tournamentDtos"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "Admin")]
+        [HttpPut("current")]
+        public ActionResult AddToCurrent([FromBody] List<TournamentDTO> tournamentDtos)
+        {
+            tournamentDtos.ForEach(dto =>
+            {
+                var userId = dto.User.Id;
+                var team = dto.Team;
+
+                _tournamentService.AddToCurrent(userId, team);
+                _tournamentService.RemoveFromQueue(userId);
+            });
             return Ok();
         }
 
+        /// <summary>
+        /// End pending tournament
+        /// </summary>
+        /// <param name="tournamentDtos">Contain information about tournament</param>
+        /// <param name="team">Winning team</param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
-        [HttpPut("Winners")]
-        public ActionResult<IEnumerable<UserDTO>> Put([FromBody] UserDTO userDto)
+        [HttpPut("end")]
+        public ActionResult EndTournament([FromBody] List<TournamentDTO> tournamentDtos,
+            [FromQuery] int team)
         {
-            List<User> updatedUser = new List<User>();
-
-            foreach (var user in userDto.User)
+            var updated = tournamentDtos.Select(td =>
             {
-                var id = user.Id;
-                var oldUser = _userService.GetById(id);
-                var userKills = oldUser.Kills + user.Kills;
-                var userDeaths = oldUser.Deaths + user.Deaths;
-                var userAssists = oldUser.Assists + user.Assists;
-                var userWins = oldUser.Wins + user.Wins;
-                oldUser.Kills = userKills;
-                oldUser.Deaths = userDeaths;
-                oldUser.Assists = userAssists;
-                oldUser.Wins = userWins;
-                updatedUser.Add(oldUser);
-            }
+                if (td.Team.Equals(team))
+                    td.User.Wins++;
 
+                return td.User;
+            }).ToList();
 
-            return Ok(_tournamentService.UpdateUser(updatedUser));
+            _tournamentService.UpdateUsers(updated);
+            return Ok();
         }
 
+        /// <summary>
+        /// End current tournament
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
-        [HttpPut("Losers")]
-        public ActionResult<IEnumerable<UserDTO>> PutLosers([FromBody] UserDTO userDto)
+        [HttpPut("endgame")]
+        public ActionResult EndGamePut()
         {
-            List<User> updatedUser = new List<User>();
-
-            foreach (var user in userDto.User)
-            {
-                var id = user.Id;
-                var oldUser = _userService.GetById(id);
-                var userKills = oldUser.Kills + user.Kills;
-                var userDeaths = oldUser.Deaths + user.Deaths;
-                var userAssists = oldUser.Assists + user.Assists;
-                var userLosses = oldUser.Losses + user.Losses;
-                oldUser.Kills = userKills;
-                oldUser.Deaths = userDeaths;
-                oldUser.Assists = userAssists;
-                oldUser.Losses = userLosses;
-                updatedUser.Add(oldUser);
-            }
-
-            return Ok(_tournamentService.UpdateUser(updatedUser));
+            _tournamentService.UpdateState(-1, 0);
+            return Ok();
         }
 
-        [Authorize(Roles = "Standard, Admin")]
-        [HttpDelete("Queue/{id}")]
+        #endregion
+
+        #region Delete
+
+        /// <summary>
+        /// Deletes user from queue
+        /// </summary>
+        /// <param name="id">Id of user to be removed</param>
+        /// <returns>Status code/returns>
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("queue/{id}")]
         public ActionResult Delete(int id)
         {
             _tournamentService.RemoveFromQueue(id);
             return Ok();
         }
+
+        #endregion
     }
 }
