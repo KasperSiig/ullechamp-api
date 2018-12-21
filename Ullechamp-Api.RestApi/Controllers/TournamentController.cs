@@ -22,213 +22,187 @@ namespace Ullechamp_Api.RestApi.Controllers
     public class TournamentController : ControllerBase
     {
         private readonly ITournamentService _tournamentService;
-        private readonly IUserService _userService;
-        private readonly IConfiguration _conf;
 
-        public TournamentController(ITournamentService tournamentService, IUserService userService, IConfiguration conf)
+        /// <summary>
+        /// Instantiates TournamentController
+        /// </summary>
+        /// <param name="tournamentService">Contains business logic for tournaments</param>
+        public TournamentController(ITournamentService tournamentService)
         {
             _tournamentService = tournamentService;
-            _userService = userService;
-            _conf = conf;
         }
 
+        #region Create
 
-        [HttpGet("Queue")]
-        public ActionResult<IEnumerable<User>> Get()
+        /// <summary>
+        /// Adds user to queue
+        /// </summary>
+        /// <param name="jObject">JWT</param>
+        /// <returns>Status Code</returns>
+        [Authorize]
+        [HttpPost("queue")]
+        public ActionResult AddToQueue([FromBody] JObject jObject)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jwtDecoded = handler.ReadJwtToken(jObject.GetValue("jwt").ToString());
+
+            if (jwtDecoded == null) return BadRequest();
+
+            var id = jwtDecoded.Claims.First((p => p.Type == "id")).Value;
+            _tournamentService.AddToQueue(id);
+            return Ok();
+        }
+
+        #endregion
+
+        #region Read
+
+        /// <summary>
+        /// Gets Users in queue
+        /// </summary>
+        /// <returns>List of Users</returns>
+        [HttpGet("queue")]
+        public ActionResult<List<User>> GetQueue()
         {
             return Ok(_tournamentService.GetUsersInQueue());
         }
 
-        [HttpGet("Current")]
+        /// <summary>
+        /// Get Users in current 
+        /// </summary>
+        /// <returns>List of TournamentDTOS</returns>
+        [HttpGet("current")]
         public ActionResult<IEnumerable<TournamentDTO>> GetCurrent()
         {
-            var list = _tournamentService.GetUsersInCurrent();
-            var list2 = new List<TournamentDTO>();
+            var usersInCurrent = _tournamentService.GetUsersInCurrent();
 
-            foreach (var tournament in list)
+            return Ok(usersInCurrent.Select(u => new TournamentDTO()
             {
-                list2.Add(new TournamentDTO()
-                {
-                    TournamentId = tournament.Id,
-                    User = tournament.User,
-                    Team = tournament.Team
-                });
-            }
-
-            return Ok(list2);
+                TournamentId = u.TournamentId,
+                User = u.User,
+                Team = u.Team
+            }));
         }
 
-        [Authorize(Roles = "Standard, Admin")]
-        [HttpPost("Queue")]
-        public ActionResult<JObject> Post([FromBody] JObject jObject)
-        {
-            var handler = new JwtSecurityTokenHandler();
-            var jwtDecoded = handler.ReadJwtToken(jObject.GetValue("jwt").ToString());
-            if (jwtDecoded != null)
-            {
-                var id = jwtDecoded.Claims.FirstOrDefault((p => p.Type == "id")).Value;
-                _tournamentService.AddToQueue(id);
-                return Ok(id);
-            }
-
-            return BadRequest();
-        }
-
+        /// <summary>
+        /// Gets all tournaments, missing information about kda
+        /// </summary>
+        /// <returns>List of PendingTournamentDTOs</returns>
         [Authorize(Roles = "Admin")]
-        [HttpPost("Current")]
-        public ActionResult<Tournament> Post([FromBody] TournamentDTO tournamentDto)
+        [HttpGet("pending")]
+        public ActionResult<IEnumerable<PendingTournamentDTO>> GetPending()
         {
-            /*var id = tournamentDto.User.Id;
-            var team = tournamentDto.Team;
-            var tourList = _tournamentService.GetUsersInCurrent().OrderBy(t => t.TournamentId);
-            var tourId = 1;
-            tourId++;
-                _tournamentService.AddToCurrent(tourId, id, team);
-                _tournamentService.RemoveFromQueue(id);*/
-            //var tourId = tourList.First().TournamentId;
-            var userId = tournamentDto.User.Id;
-            var team = tournamentDto.Team;
-            
-            _tournamentService.AddToCurrent(userId, team);
-            _tournamentService.RemoveFromQueue(userId);
-
-            return Ok();
+            var pending = _tournamentService
+                .GetPending()
+                .Select(t => new PendingTournamentDTO()
+                {
+                    TournamentId = t.Id,
+                    Date = t.DateTime
+                });
+            return Ok(pending);
+        }
+        
+        /// <summary>
+        /// Gets pending tournament by Id
+        /// </summary>
+        /// <param name="id">Id to get tournament from</param>
+        /// <returns>PendingTournamentDTO</returns>
+        [Authorize(Roles = "Admin")]
+        [HttpGet("pending/{id}")]
+        public ActionResult<PendingTournamentDTO> GetPendingById(int id)
+        {
+            var tournament = _tournamentService.GetPendingById(id);
+            var tournamentUsers = _tournamentService.GetUsersInPending(id);
+            var pending = new PendingTournamentDTO()
+            {
+                TournamentId = tournament.Id,
+                Date = tournament.DateTime,
+                Users = tournamentUsers.Select(tu => new TournamentDTO()
+                {
+                    Team = tu.Team,
+                    User = tu.User,
+                    TournamentId = tu.TournamentId
+                }).ToList()
+            };
+            return Ok(pending);
         }
 
+        #endregion
+
+        #region Update
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tournamentDtos"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
         [HttpPut("current")]
-        public ActionResult PutCurrent([FromBody] List<TournamentDTO> tournamentDtos)
+        public ActionResult AddToCurrent([FromBody] List<TournamentDTO> tournamentDtos)
         {
-            var current = _tournamentService.GetUsersInCurrent().Where(t => t.State.Equals(-1)).ToList();
-            var newList = new List<TournamentDTO>(tournamentDtos);
-            current.ForEach(t =>
-            {
-                newList.ForEach(tn =>
-                {
-                    if (t.User.Id.Equals(tn.User.Id))
-                    {
-                        tournamentDtos.Remove(tn);
-                        _tournamentService.RemoveFromQueue(tn.User.Id); 
-                    }
-                });     
-            });
             tournamentDtos.ForEach(dto =>
             {
-                
                 var userId = dto.User.Id;
                 var team = dto.Team;
-            
+
                 _tournamentService.AddToCurrent(userId, team);
                 _tournamentService.RemoveFromQueue(userId);
             });
             return Ok();
         }
 
+        /// <summary>
+        /// End pending tournament
+        /// </summary>
+        /// <param name="tournamentDtos">Contain information about tournament</param>
+        /// <param name="team">Winning team</param>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
-        [HttpPut("Winners")]
-        public ActionResult<IEnumerable<UserDTO>> Put([FromBody] UserDTO userDto)
+        [HttpPut("end")]
+        public ActionResult EndTournament([FromBody] List<TournamentDTO> tournamentDtos,
+            [FromQuery] int team)
         {
-            List<User> updatedUser = new List<User>();
-
-            foreach (var user in userDto.User)
+            var updated = tournamentDtos.Select(td =>
             {
-                var id = user.Id;
-                var oldUser = _userService.GetById(id);
-                var userKills = oldUser.Kills + user.Kills;
-                var userDeaths = oldUser.Deaths + user.Deaths;
-                var userAssists = oldUser.Assists + user.Assists;
-                var userWins = oldUser.Wins + 1;
-                oldUser.Kills = userKills;
-                oldUser.Deaths = userDeaths;
-                oldUser.Assists = userAssists;
-                oldUser.Wins = userWins;
-                updatedUser.Add(oldUser);
-            }
+                if (td.Team.Equals(team))
+                    td.User.Wins++;
 
+                return td.User;
+            }).ToList();
 
-            return Ok(_tournamentService.UpdateUser(updatedUser));
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpPut("Losers")]
-        public ActionResult<IEnumerable<UserDTO>> PutLosers([FromBody] UserDTO userDto)
-        {
-            List<User> updatedUsers = new List<User>();
-
-            foreach (var user in userDto.User)
-            {
-                var id = user.Id;
-                var oldUser = _userService.GetById(id);
-                var userKills = oldUser.Kills + user.Kills;
-                var userDeaths = oldUser.Deaths + user.Deaths;
-                var userAssists = oldUser.Assists + user.Assists;
-                var userLosses = oldUser.Losses + 1;
-                oldUser.Kills = userKills;
-                oldUser.Deaths = userDeaths;
-                oldUser.Assists = userAssists;
-                oldUser.Losses = userLosses;
-                updatedUsers.Add(oldUser);
-            }
-
-
-            return Ok(_tournamentService.UpdateUser(updatedUsers));
-        }
-        
-        [Authorize(Roles = "Admin")]
-        [HttpPut("EndGame")]
-        public ActionResult EndGamePut()
-        {
-            _tournamentService.UpdateState();
+            _tournamentService.UpdateUsers(updated);
             return Ok();
         }
 
+        /// <summary>
+        /// End current tournament
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "Admin")]
-        [HttpDelete("Queue/{id}")]
+        [HttpPut("endgame")]
+        public ActionResult EndGamePut()
+        {
+            _tournamentService.UpdateState(-1, 0);
+            return Ok();
+        }
+
+        #endregion
+
+        #region Delete
+
+        /// <summary>
+        /// Deletes user from queue
+        /// </summary>
+        /// <param name="id">Id of user to be removed</param>
+        /// <returns>Status code/returns>
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("queue/{id}")]
         public ActionResult Delete(int id)
         {
             _tournamentService.RemoveFromQueue(id);
             return Ok();
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpGet("pending")]
-        public ActionResult<List<PendingTournamentDTO>> GetPending()
-        {
-            var tournaments = _tournamentService.GetPending();
-            List<PendingTournamentDTO> pending = new List<PendingTournamentDTO>();
-            tournaments.ForEach(tournament =>
-            {
-                pending.Add(new PendingTournamentDTO()
-                {
-                    TournamentId = tournament.TournamentId,
-                    Date = tournament.DateTime
-                });
-            });
-            return Ok(pending);
-        }
-        
-        [Authorize(Roles = "Admin")]
-        [HttpGet("pending/{id}")]
-        public ActionResult<PendingTournamentDTO> GetPendingById(int id)
-        {
-            var tournament = _tournamentService.GetPendingById(id);
-            var users = _tournamentService.GetUsersInPending(tournament.TournamentId);
-            var pending = new PendingTournamentDTO()
-            {
-                TournamentId = tournament.TournamentId,
-                Date = tournament.DateTime,
-                Users = new List<TournamentDTO>()
-            };
-            foreach (var user in users)
-            {
-                pending.Users.Add(new TournamentDTO()
-                {
-                    Team = user.Team,
-                    User = user.User,
-                    TournamentId = tournament.TournamentId
-                });
-            }
-            return Ok(pending);
-        }
+        #endregion
     }
 }

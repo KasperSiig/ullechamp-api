@@ -14,7 +14,7 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
         {
             _ctx = ctx;
         }
-        
+
         public void CreatePhotoURL(string fileName, DateTime now)
         {
             var gallery = _ctx.Galleries.Add(new Gallery()
@@ -27,8 +27,7 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
 
         public IEnumerable<Gallery> ReadPhotos()
         {
-            var photos = _ctx.Galleries.OrderByDescending(p => p.Time);
-            return photos;
+            return _ctx.Galleries.OrderByDescending(p => p.Time);
         }
     }
 }
