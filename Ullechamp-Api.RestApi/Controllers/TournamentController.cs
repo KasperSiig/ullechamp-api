@@ -166,6 +166,8 @@ namespace Ullechamp_Api.RestApi.Controllers
             {
                 if (td.Team.Equals(team))
                     td.User.Wins++;
+                else
+                    td.User.Losses++;
 
                 return td.User;
             }).ToList();
