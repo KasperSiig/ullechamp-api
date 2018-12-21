@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Ullechamp_Api.Core.Entity
 {
@@ -19,5 +20,6 @@ namespace Ullechamp_Api.Core.Entity
         public int WinLoss { get; set; }
         public int Point { get; set; }
         public int Rank { get; set; }
+        public List<TournamentUser> TournamentUsers { get; set; }
     }
 }

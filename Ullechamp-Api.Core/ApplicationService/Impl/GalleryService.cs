@@ -20,7 +20,7 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
             _galleryRepo.CreatePhotoURL(fileName, DateTime.Now);
         }
 
-        public List<Gallery> GetPhotos()
+        public List<Gallery> GetPictures()
         {
             return _galleryRepo.ReadPhotos().ToList();
         }

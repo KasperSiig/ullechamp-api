@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -14,24 +15,24 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
     public class TournamentRepository : ITournamentRepository
     {
         private readonly UllechampContext _ctx;
+        private IUserRepository _userRepo;
 
-        public TournamentRepository(UllechampContext ctx)
+        public TournamentRepository(UllechampContext ctx,
+            IUserRepository userRepo)
         {
             _ctx = ctx;
+            _userRepo = userRepo;
         }
 
         public IEnumerable<User> ReadUsersInQueue()
         {
-            var users = _ctx.Queues.OrderBy(t => t.QueueTime).Select(q => q.User);
-            return users;
+            return _ctx.Queues.OrderBy(t => t.QueueTime).Select(q => q.User);
         }
 
         public void AddToQueue(string id, DateTime now)
         {
-            var users = _ctx.Queues;
-
-            var userId = users.FirstOrDefault(q => q.User.Id == int.Parse(id));
-            if (userId != null) return;
+            var queueCheck = _ctx.Queues.FirstOrDefault(q => q.User.Id == int.Parse(id));
+            if (queueCheck != null) return;
             var queue = new Queue()
             {
                 User = new User() {Id = int.Parse(id)},
@@ -48,45 +49,37 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
             _ctx.SaveChanges();
         }
 
-        public void AddToCurrent(int id, int team, DateTime time, int tourId)
+        public void AddToCurrent(Tournament tournament, int userId, int team)
         {
-            var current = new Tournament()
+            var user = _userRepo.ReadById(userId);
+            var tournamentUser = new TournamentUser()
             {
-                TournamentId = tourId,
-                User = new User() {Id = id},
-                State = -1,
-                Team = team,
-                DateTime = time
+                Tournament = tournament,
+                User = user,
+                Team = team
             };
-            _ctx.Attach(current.User);
-            _ctx.Attach(current).State = EntityState.Added;
+            tournamentUser.TournamentId = tournament.Id;
+            tournamentUser.UserId = userId;
+            _ctx.TournamentUsers.Attach(tournamentUser).State = EntityState.Added;
             _ctx.SaveChanges();
         }
 
-        public IEnumerable<Tournament> GetUsersInCurrent()
+        public IEnumerable<TournamentUser> ReadUsersInCurrent()
         {
-            var allUsers = _ctx.Tournaments.Include(t => t.User);
-            List<Tournament> current = new List<Tournament>();
+            var current = _ctx.Tournaments
+                .Include(t => t.TournamentUsers)
+                .FirstOrDefault(t => t.State == -1);
+            if (current == null)
+                return new List<TournamentUser>();
 
-            foreach (var user in allUsers)
-            {
-                if (user.State == -1)
-                {
-                    current.Add(user);
-                }
-            }
-
-            return current;
+            return _ctx.TournamentUsers
+                .Include(tu => tu.User)
+                .Where(tu => tu.TournamentId == current.Id);
         }
 
-        public IEnumerable<User> UpdateUser(List<User> userList)
+        public IEnumerable<User> UpdateUsers(List<User> userList)
         {
-            List<User> updatedUsers = new List<User>();
-            foreach (var user in userList)
-            {
-                var updateUser = _ctx.Update(user).Entity;
-                updatedUsers.Add(user);
-            }
+            var updatedUsers = userList.Select(user => _ctx.Update(user).Entity);
 
             _ctx.SaveChanges();
             UpdateRank();
@@ -98,17 +91,12 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
             return _ctx.Tournaments;
         }
 
-        public IEnumerable<User> ReadAllUsers()
-        {
-            return _ctx.Users;
-        }
-
-        public void UpdateTournament()
+        public void UpdateState(int fromState, int toState)
         {
             _ctx.Tournaments
-                .Where(t => t.State == -1)
+                .Where(t => t.State == fromState)
                 .ToList()
-                .ForEach(t => t.State = 0);
+                .ForEach(t => t.State = toState);
             _ctx.SaveChanges();
         }
 
@@ -119,18 +107,25 @@ namespace Ullechamp_Api.Infrastructure.Data.Repositories
 
         public Tournament ReadPendingById(int id)
         {
-            return _ctx.Tournaments.FirstOrDefault(t => t.TournamentId == id);
+            return _ctx.Tournaments.FirstOrDefault(t => t.Id == id);
         }
 
-        public IEnumerable<Tournament> ReadUsersInPending(int id)
+        public IEnumerable<TournamentUser> ReadUsersInPending(int id)
         {
-            return _ctx.Tournaments
-                .Where(t => t.TournamentId == id)
-                .Select(t => new Tournament()
-                {
-                   Team = t.Team,
-                   User = t.User
-                });
+            return _ctx.TournamentUsers
+                .Include(tu => tu.User)
+                .Where(tu => tu.TournamentId == id);
+        }
+
+        public Tournament Create()
+        {
+            var created = _ctx.Add(new Tournament()
+            {
+                DateTime = DateTime.Now,
+                State = -1
+            }).Entity;
+            _ctx.SaveChanges();
+            return created;
         }
 
         private void UpdateRank()

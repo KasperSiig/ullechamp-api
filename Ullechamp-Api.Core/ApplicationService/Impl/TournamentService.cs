@@ -16,7 +16,6 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
         {
             _tournamentRepo = tournamentRepo;
         }
-        
         public List<User> GetUsersInQueue()
         {
             return _tournamentRepo.ReadUsersInQueue().ToList();
@@ -34,28 +33,28 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
 
         public void AddToCurrent(int userId, int team)
         {
-            var time = DateTime.Now;
-            var firstTour = _tournamentRepo.ReadAllTournaments().OrderByDescending(t => t.TournamentId).FirstOrDefault();
-            int tourId = firstTour == null ? 1 : firstTour.TournamentId + 1;
-            var check = _tournamentRepo.ReadAllTournaments().FirstOrDefault(t => t.State == -1);
-            if (check != null)
-            {
-                time = check.DateTime;
-                tourId = check.TournamentId;
-            }
-            _tournamentRepo.AddToCurrent(userId, team, time, tourId);
+            var tour = _tournamentRepo.ReadAllTournaments().
+                           FirstOrDefault(t => t.State == -1) ?? Create();
+
+            _tournamentRepo.AddToCurrent(tour, userId, team);
         }
 
-        public List<Tournament> GetUsersInCurrent()
+        private Tournament Create()
         {
-            return _tournamentRepo.GetUsersInCurrent().ToList();
+            return _tournamentRepo.Create();
+        }
+        
+
+        public List<TournamentUser> GetUsersInCurrent()
+        {
+            return _tournamentRepo.ReadUsersInCurrent().ToList();
         }
 
-        public List<User> UpdateUser(List<User> updatedUser)
+        public List<User> UpdateUsers(List<User> updatedUsers)
         {
             List<User> userList = new List<User>();
             
-            foreach (var user in updatedUser)
+            foreach (var user in updatedUsers)
             {
                 var killDouble = Convert.ToDouble(user.Kills);
                 var deathDouble = Convert.ToDouble(user.Deaths);
@@ -76,37 +75,19 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
                 user.Point = Convert.ToInt32(Math.Round(pointResult, 0));
                 userList.Add(user);
             }
-
-            return _tournamentRepo.UpdateUser(userList).ToList();
+            
+            UpdateState(0, 1);
+            return _tournamentRepo.UpdateUsers(userList).ToList();
         }
 
-        public void UpdateState()
+        public void UpdateState(int fromState, int toState)
         {
-            _tournamentRepo.UpdateTournament();
+            _tournamentRepo.UpdateState(fromState, toState);
         }
 
         public List<Tournament> GetPending()
         {
-            var pending = _tournamentRepo.ReadPending();
-            var rtn = new List<Tournament>();
-            foreach (var tournament in pending)
-            {
-                var id = tournament.TournamentId;
-                var exist = false;
-                foreach (var t in rtn)
-                {
-                    if (t.TournamentId == id)
-                    {
-                        exist = true;
-                    }
-                }
-                if (!exist)
-                {
-                    rtn.Add(tournament);
-                }
-            }
-
-            return rtn;
+            return _tournamentRepo.ReadPending().ToList();
         }
 
         public Tournament GetPendingById(int id)
@@ -114,7 +95,7 @@ namespace Ullechamp_Api.Core.ApplicationService.Impl
             return _tournamentRepo.ReadPendingById(id);
         }
 
-        public List<Tournament> GetUsersInPending(int id)
+        public List<TournamentUser> GetUsersInPending(int id)
         {
             return _tournamentRepo.ReadUsersInPending(id).ToList();
         }

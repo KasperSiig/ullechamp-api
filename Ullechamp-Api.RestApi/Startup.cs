@@ -88,9 +88,9 @@ namespace Ullechamp_Api.RestApi
             
             services.AddHttpClient();
             
-            services.AddMvc().AddJsonOptions(options =>
-            {
+            services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.MaxDepth = 3;
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
